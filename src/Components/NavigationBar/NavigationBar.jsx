@@ -1,51 +1,67 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./NavigationBar.css";
 import logo from "./logomain.png";
-import menulogo from "./logomain.png";
-import { useLocation, Link, useHistory } from "react-router-dom";
-import Collaps from "./Components/collapes";
 
+import { useLocation, Link, useHistory } from "react-router-dom";
+import SideMenu from "./Components/SideMenu";
+import card from "../../Assets/card.png";
+import { useTranslation } from "react-i18next";
 function NavigationBar() {
   const location = useLocation();
   let history = useHistory();
   let [submenu, setsubmenu] = useState(true);
   let pages = useRef([
     {
-      icon: "",
+      icon: "fas fa-house-chimney",
       name: "Home Page",
       route: "/",
-      dropdown: [{ name: "WordPress1" }, { name: "WordPress Hosting2" }],
     },
     {
-      name: "Hosting",
+      icon: "fab fa-audible",
+      name: "Local card",
       route: "/about-us",
       dropdown: [{ name: "WordPress2" }, { name: "WordPress Hosting2" }],
     },
-    { name: "Domain", route: "/listinings" },
-    { name: "Website & store", route: "/our-team" },
-    { name: "Professional Service", route: "/gallery" },
-    { name: "Email", route: "/contact-us" },
-    { name: "Resources", route: "/contact-us" },
+    {
+      icon: "fab fa-atlassian",
+      name: "International ",
+      route: "/listinings",
+      dropdown: [{ name: "WordPress1" }, { name: "WordPress Hosting2" }],
+    },
+    { icon: "fas fa-gamepad", name: "Website & store", route: "/our-team" },
+    { icon: "fas fa-address-card", name: "About", route: "/gallery" },
   ]);
   const [screenSize, getDimension] = useState({
     dynamicWidth: window.innerWidth,
     dynamicHeight: window.innerHeight,
   });
+  const [list, setlist] = useState([
+    {
+      name: "steam card (UAS)",
+      ImagePath: card,
+      price: 400,
+    },
 
+    {
+      name: "steam card (UAS)",
+      ImagePath: card,
+      price: 1221,
+    },
+  ]);
+  const [values, setvalues] = useState({});
+  const handleChange = useCallback((e) => {
+    console.log({ [e.target.name]: e.target.value });
+    setvalues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }, []);
   const openMenu = () => {
     setsubmenu(false);
     document.getElementById("touch").classList.remove("collapsed");
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("maincontent").style.right = "250px";
-    document.getElementById("maincontent").style.position = "absolute";
-    document.getElementById("mySidenav").style.right = "0";
+    document.getElementById("mySidenav").style.width = "80%";
   };
   const closeMenu = () => {
     setsubmenu(true);
     document.getElementById("touch")?.classList.add("collapsed");
-    document.getElementById("maincontent").style.right = "0";
-    document.getElementById("maincontent").style.position = "";
-    document.getElementById("mySidenav").style.width = "0px";
+    document.getElementById("mySidenav").style.width = "0";
   };
   const navigation = useCallback((e) => {
     closeMenu();
@@ -54,6 +70,9 @@ function NavigationBar() {
   const setDimension = useCallback(() => {
     if (window.innerWidth > 998) {
       closeMenu();
+      document.getElementsByClassName(
+        "search-input-mobile-view"
+      )[0].style.display = "none";
     }
     getDimension({
       dynamicWidth: window.innerWidth,
@@ -95,13 +114,81 @@ function NavigationBar() {
       </div>
     );
   };
+
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    if (i18n.language === "en") {
+      document.getElementById("mySidenav").classList.add("direction-left");
+      document.getElementById("mySidenav").classList.remove("direction-right");
+      var xx = document.querySelectorAll(".collapsible");
+    } else {
+      document.getElementById("mySidenav").classList.remove("direction-left");
+      document.getElementById("mySidenav").classList.add("direction-right");
+    }
+  }, [i18n.language]);
   return (
-    <nav className={"  container "} id="mynav">
-      <div className="  ">
-        <div className="row" style={{ padding: "20px 0px" }}>
-          <div className="col">
-            <div className="main-section-navigation ">
-              <div className="Logo-size " style={{ cursor: "pointer" }}>
+    <nav
+      id="mynav"
+      style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}
+    >
+      <div className="row nav-up-container" id={"nav-up-container-id"}>
+        <div className="col" style={{ alignSelf: "center" }}>
+          <div className="search-input-mobile-view">
+            <a
+              className=" text-color-hover close-search-input "
+              onClick={() =>
+                (document.getElementsByClassName(
+                  "search-input-mobile-view"
+                )[0].style.display = "none")
+              }
+            >
+              &times;
+            </a>
+            <form
+              className="search-input"
+              style={{ backgroundColor: "white", margin: "auto" }}
+            >
+              <input
+                className="search-input-element"
+                placeholder="Search here..."
+                required
+                name="searchinput"
+                onChange={handleChange}
+                value={values.searchinput}
+              ></input>
+              <a style={{ margin: "auto 15px", cursor: "pointer" }}>
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </a>
+            </form>
+            <div
+              style={{
+                margin: " 5% 0",
+                border: "1px solid black",
+                backgroundColor: "white",
+              }}
+            >
+              {list.map((ele) => (
+                <div style={{ display: "flex" }}>
+                  <div
+                    style={{
+                      width: "10%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img style={{ margin: "auto" }} src={ele.ImagePath} />
+                  </div>
+                  <div>
+                    <p>{ele.name} </p>
+                    <div>{ele.price}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="main-section-navigation ">
+            <div className="Logo-size " style={{ cursor: "pointer" }}>
+              <div className="hide-web">
                 <input
                   style={{ display: "none" }}
                   id="check02"
@@ -109,154 +196,128 @@ function NavigationBar() {
                   name="menu"
                 />
                 <Buttontoggler />
-                <div className="hide-mobile ">
-                  <img
-                    onClick={() => history.push("/")}
-                    src={logo}
-                    width={"200px"}
-                  />
-                </div>
+                <i
+                  style={{ fontSize: "20px", margin: " auto 15px" }}
+                  class="fa-solid fa-magnifying-glass"
+                  onClick={() =>
+                    (document.getElementsByClassName(
+                      "search-input-mobile-view"
+                    )[0].style.display = "block")
+                  }
+                ></i>
+              </div>
+
+              <div className="hide-mobile ">
+                <img
+                  onClick={() => history.push("/")}
+                  src={logo}
+                  width={"200px"}
+                />
               </div>
             </div>
           </div>
-          <div className="col">
-            <div className="hide-web">
-              <img
-                onClick={() => history.push("/")}
-                src={logo}
-                width={"200px"}
-              />
-            </div>
-            <form className="search-input hide-mobile">
-              <input
-                style={{ border: 0, outline: 0, width: "100%", margin: "15px" }}
-                placeholder="Search entire store here..."
-              ></input>
-              <a style={{ margin: "auto 15px", cursor: "pointer" }}>
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </a>
-            </form>
+        </div>
+        <div className="col" style={{ alignItems: "center" }}>
+          <div className="hide-web" style={{ justifyContent: "center" }}>
+            <img onClick={() => history.push("/")} src={logo} width={"200px"} />
           </div>
+          <form className="search-input hide-mobile">
+            <input
+              className="search-input-element"
+              placeholder="Search here..."
+              name="searchinput"
+              onChange={handleChange}
+              value={values.searchinput}
+            ></input>
+            <a style={{ margin: "auto 15px", cursor: "pointer" }}>
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </a>
+          </form>
+        </div>
+        <div
+          className="col"
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignSelf: "center",
+          }}
+        >
+          <b className="hide-mobile">
+            <Link
+              onClick={() => history.push("/log-in")}
+              className="text-remove-style  text-color-hover"
+              style={{ padding: "0 5px" }}
+            >
+              LOGIN
+            </Link>
+            |
+          </b>
+
           <div
-            className="col"
             style={{
               display: "flex",
               justifyContent: "flex-end",
               alignSelf: "center",
             }}
           >
-            <b style={{ padding: "0 5px" }}>
-              <Link
-                onClick={() => history.push("/log-in")}
-                className="text-remove-style"
-              >
-                LOGIN
-              </Link>
-            </b>
-            |
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignSelf: "center",
-              }}
+            <a href="#" class="notification">
+              <i class=" padding-icons-class  text-color-hover fa-solid fa-heart"></i>
+              <span class="badge">3</span>
+            </a>
+            <a href="#" class="notification">
+              <i class=" padding-icons-class  text-color-hover fa-solid fa-arrows-rotate"></i>
+              <span class="badge">3</span>
+            </a>
+            <a href="#" class="notification">
+              <i class=" padding-icons-class  text-color-hover fa-solid fa-cart-arrow-down"></i>
+              <span class="badge">3</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <ul
+          style={{ float: i18n.language === "en" ? "left" : "right" }}
+          className="Horizontal-list  remove-dot"
+        >
+          {pages.current.map((ele, index) => (
+            <li
+              key={index}
+              className={
+                getRoutes()?.route == ele?.route
+                  ? "active-page allnav"
+                  : " allnav"
+              }
             >
-              <a href="#" class="notification">
-                <i class=" padding-icons-class fa-solid fa-heart"></i>
-                <span class="badge">3</span>
-              </a>
-              <a href="#" class="notification">
-                <i class=" padding-icons-class fa-solid fa-arrows-rotate"></i>
-                <span class="badge">3</span>
-              </a>
-              <a href="#" class="notification">
-                <i class=" padding-icons-class fa-solid fa-cart-arrow-down"></i>
-                <span class="badge">3</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div></div>
-
-        <div>
-          <ul className="Horizontal-list  remove-dot">
-            {pages.current.map((ele, index) => (
-              <li
-                key={index}
-                className={
-                  getRoutes()?.route == ele?.route
-                    ? "active-page allnav"
-                    : " allnav"
-                }
+              <Link
+                className="Horizontal-list-elements text-color-hover"
+                to={ele.route}
+                style={{ margin: index != 0 ? "0 5px" : "0" }}
               >
-                <Link className="Horizontal-list-elements " to={ele.route}>
-                  <i style={{ padding: "3px" }} class="fa-solid fa-heart"></i>
-                  {ele.name}
-                </Link>
+                <i style={{ padding: "3px" }} className={ele.icon}></i>
+                {ele.name}
+              </Link>
 
-                {ele?.dropdown ? (
-                  <div className="dropdown-content">
-                    {ele.dropdown.map((ele, indexx) => (
-                      <Link key={indexx} className="drop-down-link">
-                        {ele?.name}
-                      </Link>
-                    ))}
-                  </div>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-          <div id="mySidenav" className="sidenav">
-            <ul className=" remove-dot " style={{ position: "absolute" }}>
-              <li>
-                <Link className=" ">
-                  <img
-                    onClick={() => history.push("/")}
-                    src={menulogo}
-                    width={"190px"}
-                  />
-                </Link>
-              </li>
-              {pages.current.map((ele, index) => (
-                <li key={index}>
-                  <div
-                    id={"dropdownmain" + index}
-                    className={
-                      ele?.dropdown ? "collapsible " : " uncollapsible"
-                    }
-                    onClick={
-                      ele?.dropdown
-                        ? () => {
-                            document
-                              .getElementById("dropdown" + index)
-                              .classList.toggle("activecollapsible");
-                            document
-                              .getElementById("dropdownmain" + index)
-                              .classList.toggle("activecollapsible34");
-                          }
-                        : (e) => navigation(ele.route)
-                    }
-                  >
-                    {ele.name}
-                  </div>
-                  {ele?.dropdown ? (
-                    <div
-                      id={"dropdown" + index}
-                      className=" collapsiblecontent"
-                    >
-                      {ele.dropdown.map((ele, indexx) => (
-                        <Link key={indexx} className="drop-down-link-side">
-                          {ele?.name}
-                        </Link>
-                      ))}
-                    </div>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+              {ele?.dropdown ? (
+                <div className="dropdown-content">
+                  {ele.dropdown.map((ele, indexx) => (
+                    <Link key={indexx} className="drop-down-link">
+                      {ele?.name}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+        <SideMenu
+          pages={pages}
+          navigation={navigation}
+          submenu={submenu}
+          openMenu={openMenu}
+          closeMenu={closeMenu}
+        />
       </div>
     </nav>
   );

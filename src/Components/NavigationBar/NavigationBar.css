@@ -15,7 +15,7 @@
 /* Lines of the Toggler */
 
 .toggler-icon {
-  width: 30px !important;
+  width: 20px !important;
   height: 3px;
   background-color: black;
   display: block;
@@ -78,12 +78,11 @@
   color: black;
   margin: 0;
   -webkit-font-smoothing: antialiased;
-  z-index: 10000000;
+  z-index: 1;
   background-color: #fff;
 }
 
 .collabse-button {
-  margin: 15px 0;
 }
 
 /*  input:checked ~ .DropDownList {
@@ -95,6 +94,13 @@
   color: inherit;
   text-decoration: inherit;
 }
+.search-input-element {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  margin: 0 18px;
+  color: inherit;
+}
 .search-input {
   border: 1.5px solid #a9a6a6;
   border-radius: 45px;
@@ -105,10 +111,7 @@
   width: 100%;
   outline: none;
   display: flex;
-}
-.fixed-nav nav#mynav {
-  position: fixed;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+  max-width: 411px;
 }
 .block-search .form.minisearch .control input {
   display: inline-block;
@@ -127,23 +130,20 @@
   padding: 0;
 }
 .padding-icons-class {
-  padding: 0 7px;
-  font-size: 25px;
+  padding: 0 10px;
+  font-size: 20px;
 }
 .hide-mobile {
   display: flex;
 }
 .notification .badge {
   width: 25px;
-
-  background: red;
   color: #ffffff;
-
   border-radius: 50%;
 }
 .notification {
   text-decoration: none;
-  color: black;
+  color: inherit;
   position: relative;
   display: inline-block;
   border-radius: 2px;
@@ -154,13 +154,37 @@
   right: -10px;
   padding: 5px 10px;
   border-radius: 50%;
-  background-color: red;
+  background-color: rgb(91, 168, 220);
   color: white;
 }
+#mynav {
+  color: #4c4c4c;
+  max-width: 1320px;
+  margin: auto;
+}
+/*#mynav {
+  max-width: 100vw;
+  position: fixed;
+  z-index: 99999999999999;
+  background-color: white;
+}*/
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  background: white;
+  min-width: 100vw;
+}
+
 @media screen and (max-width: 1000px) {
   .transition {
     height: 390px !important;
   }
+  .main_body {
+    margin-bottom: 86px;
+  }
+
   .hide-mobile {
     display: none;
   }
@@ -206,6 +230,9 @@
     display: none;
   }
 }
+.Horizontal-list {
+  height: 20px;
+}
 
 @media screen and (min-width: 1400px) {
   .NavbarDraw {
@@ -215,8 +242,36 @@
     padding: 0 100px;
   }
 }
+.nav-up-container {
+  padding: 30px 0px !important;
+}
+#nav-up-container-id {
+  width: 100%;
+  margin: auto;
+  padding: 15px 0px;
+  transition: all 0.5s ease;
+}
+#navbar {
+  transition: all 0.5s ease;
+  z-index: 10;
+}
 
-@media screen and (max-width: 1220px) and (min-width: 1000px) {
+.down-nav {
+  top: 120px !important;
+}
+.dropdown-content {
+  position: absolute;
+  opacity: 0;
+  border: 1px solid #0000002e;
+  height: 0;
+  width: 89%;
+  left: 5%;
+  top: 200px;
+  right: 5%;
+  transition: all 0.5s ease;
+  background-color: #fff;
+  z-index: -1;
+  overflow: hidden;
 }
 
 .mainclass {
@@ -240,62 +295,23 @@
     display: flex;
     justify-content: space-between;
   }
-  .Horizontal-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 16px;
-  }
-  .Horizontal-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    margin-top: 5px;
-    margin-bottom: auto;
-  }
   .Horizontal-list li {
     float: left;
-    color: #428bca;
-    transition: all 0.5s ease;
   }
 }
 
 .Horizontal-list-elements {
-  padding: 0 20px;
-  color: black !important;
+  margin: 0 5px;
+  color: inherit;
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
-  display: block;
-  color: inherit;
-  text-decoration-color: transparent;
-  transition: 1s;
-  position: relative;
-  text-underline-offset: 0.2em;
-  /*add those for opera and mozilla support*/
-  -webkit-text-decoration-color: transparent;
-  -moz-text-decoration-color: transparent;
+  transition: color 0.5s ease;
 }
 
-.Horizontal-list-elements:hover {
-  border-color: #5ba8dc;
-  text-decoration-color: #5ba8dc;
-  /*add those for opera and mozilla support*/
-  -webkit-text-decoration-color: #5ba8dc;
-  -moz-text-decoration-color: #5ba8dc;
+.text-color-hover:hover {
+  color: #5ba8dc;
 }
-
-.Logo-size {
-  background-position: 0;
-  float: left;
-  float: left;
-  padding: 0px 20px;
-}
-
 @media screen and (min-width: 62em) {
   .secondary-nav {
     align-items: center;
@@ -323,27 +339,29 @@
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1;
   top: 0;
-  background-color: #002442;
+  background-color: white;
   overflow-x: hidden;
   transition: 0.5s;
+  z-index: 3;
 }
-
+.direction-left {
+  left: 0;
+}
+.direction-right {
+  right: 0;
+}
 .sidenav a {
-  padding: 0.9rem 2.5rem;
   text-decoration: none;
-  font-size: 13px;
-  color: white;
+  font-size: 25px;
+  color: #818181;
   display: block;
   transition: 0.3s;
 }
 
 .sidenav .closebtn {
-  position: absolute;
-  top: -20px;
-  right: 0;
   font-size: 36px;
+  padding: 0 30px;
 }
 
 #maincontent {
@@ -386,35 +404,21 @@
   background-color: #eeeeee;
 }
 
-.allnav:hover div {
+.allnav:hover .dropdown-content {
   height: 50%;
   opacity: 1;
   transform: translateY(0);
-}
 
-.dropdown-content {
-  margin: 0 20px;
-  position: absolute;
-  width: 85%;
-  background-color: #fff;
-  opacity: 0;
-  height: 0;
-  left: 5%;
-  transition: all 0.5s ease;
-  border: 1px solid #0000002e;
-  margin-top: 20px;
-}
-
-.Logo-size-side-menu {
+  min-height: 300px;
+  z-index: 10;
 }
 
 .collapsible {
-  padding: 0 30px;
-  color: white;
+  margin: 0 30px;
   text-decoration: none;
-  font-size: 16px;
-  display: block;
-  line-height: 60px;
+  /* font-size: 16px; */
+  /* display: block; */
+  line-height: 27px;
   cursor: pointer;
   text-decoration: underline 0.15em;
   text-decoration-color: transparent;
@@ -422,36 +426,64 @@
   position: relative;
   transition: all 1s;
   text-underline-offset: 0.2em;
+  /* width: 400px; */
+  border-bottom: 1px solid #00000029;
+  padding: 5px 0;
 }
-
-.uncollapsible {
-  padding: 0 30px;
-  color: white;
+.collapsibleAr {
+  margin: 0 30px;
   text-decoration: none;
-  font-size: 16px;
-  display: block;
-  line-height: 60px;
+  /* font-size: 16px; */
+  /* display: block; */
+  line-height: 27px;
   cursor: pointer;
   text-decoration: underline 0.15em;
   text-decoration-color: transparent;
-  transition: all 1s;
+  transition: 1s;
   position: relative;
   transition: all 1s;
   text-underline-offset: 0.2em;
+  /* width: 400px; */
+  border-bottom: 1px solid #00000029;
+  padding: 5px 0;
+}
+.uncollapsible {
+  margin: 0 30px;
+  text-decoration: none;
+  /* font-size: 16px; */
+  /* display: block; */
+  line-height: 27px;
+  cursor: pointer;
+  text-decoration: underline 0.15em;
+  text-decoration-color: transparent;
+  transition: 1s;
+  position: relative;
+  transition: all 1s;
+  text-underline-offset: 0.2em;
+  /* width: 400px; */
+  border-bottom: 1px solid #00000029;
+  padding: 5px 0;
 }
 
 .collapsible::after {
   content: "\002B";
-  color: white;
+
   font-weight: bold;
   cursor: pointer;
   float: right;
   margin-left: 5px;
 }
+.collapsibleAr::after {
+  content: "\002B";
 
+  font-weight: bold;
+  cursor: pointer;
+  float: left;
+  margin-left: 5px;
+}
 .activecollapsible34::after {
   content: "\2212" !important;
-  color: white;
+
   font-weight: bold;
 }
 
@@ -460,48 +492,31 @@
 }
 
 .collapsiblecontent {
-  padding: 0 18px;
   overflow: hidden;
   transition: all 1s;
   max-height: 0px;
-  background-color: #004e91;
-  min-width: 253px;
 }
-.menu {
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  width: 200px;
-}
-
-.menu > li > a {
-  display: block;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  z-index: 20000000000;
-}
-
-.menu ul {
-  background: #ddd;
-  height: 0;
+.search-input-mobile-view {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  top: 0;
+  position: fixed;
   left: 0;
-  opacity: 0;
-  position: absolute;
-  transition: all 0.5s ease;
-  top: 35px;
-  width: 100%;
-  z-index: 9999999999;
+  background-color: #000000e0;
+  padding: 17% 2%;
+  display: none;
 }
-
-.menu li:hover ul {
-  height: 200px;
-  opacity: 1;
-  transform: translateY(0);
+.close-search-input {
+  margin: auto;
+  font-size: 50px;
+  display: flex;
+  font-weight: bolder;
+  justify-content: center;
+  transition: all 0.3s;
+  color: #ffffff85;
 }
-
-.menu ul a {
-  color: #000;
-  display: block;
-  padding: 5px 20px;
+.close-search-input:hover {
+  -ms-transform: rotate(20deg); /* IE 9 */
+  transform: rotate(20deg);
 }

@@ -38,5 +38,8 @@
   }
 }
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+
+  line-height: 1.42857143;
 }
