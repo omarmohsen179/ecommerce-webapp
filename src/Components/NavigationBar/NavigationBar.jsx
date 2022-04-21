@@ -6,6 +6,7 @@ import { useLocation, Link, useHistory } from "react-router-dom";
 import SideMenu from "./Components/SideMenu";
 import card from "../../Assets/card.png";
 import { useTranslation } from "react-i18next";
+import CategoryList from "../CategoriesList";
 function NavigationBar() {
   const location = useLocation();
   let history = useHistory();
@@ -17,18 +18,26 @@ function NavigationBar() {
       route: "/",
     },
     {
-      icon: "fab fa-audible",
-      name: "Local card",
+      icon: "fas fa-code-branch",
+      name: "Categories",
       route: "/about-us",
-      dropdown: [{ name: "WordPress2" }, { name: "WordPress Hosting2" }],
+      dropdown: () => (
+        <CategoryList
+          style={{
+            width: "100%",
+            height: "100%",
+            padding: "20px",
+            backgroundColor: "white",
+          }}
+        />
+      ),
     },
     {
-      icon: "fab fa-atlassian",
-      name: "International ",
+      icon: "fas fa-newspaper",
+      name: "Blogs ",
       route: "/listinings",
-      dropdown: [{ name: "WordPress1" }, { name: "WordPress Hosting2" }],
     },
-    { icon: "fas fa-gamepad", name: "Website & store", route: "/our-team" },
+
     { icon: "fas fa-address-card", name: "About", route: "/gallery" },
   ]);
   const [screenSize, getDimension] = useState({
@@ -144,7 +153,7 @@ function NavigationBar() {
             >
               &times;
             </a>
-            <form
+            <div
               className="search-input"
               style={{ backgroundColor: "white", margin: "auto" }}
             >
@@ -156,10 +165,15 @@ function NavigationBar() {
                 onChange={handleChange}
                 value={values.searchinput}
               ></input>
-              <a style={{ margin: "auto 15px", cursor: "pointer" }}>
+              <a
+                onClick={() => {
+                  history.push("/list?q=" + values.searchinput + "&c=x");
+                }}
+                style={{ margin: "auto 15px", cursor: "pointer" }}
+              >
                 <i className="fa-solid fa-magnifying-glass"></i>
               </a>
-            </form>
+            </div>
             <div
               style={{
                 margin: " 5% 0",
@@ -229,7 +243,12 @@ function NavigationBar() {
               onChange={handleChange}
               value={values.searchinput}
             ></input>
-            <a style={{ margin: "auto 15px", cursor: "pointer" }}>
+            <a
+              onClick={() => {
+                history.push("/list?q=" + values.searchinput + "&c=x");
+              }}
+              style={{ margin: "auto 15px", cursor: "pointer" }}
+            >
               <i className="fa-solid fa-magnifying-glass"></i>
             </a>
           </form>
@@ -278,38 +297,38 @@ function NavigationBar() {
 
       <div>
         <ul
-          style={{ float: i18n.language === "en" ? "left" : "right" }}
+          style={{
+            float: i18n.language === "en" ? "left" : "right",
+            width: "36%",
+          }}
           className="Horizontal-list  remove-dot"
         >
-          {pages.current.map((ele, index) => (
-            <li
-              key={index}
-              className={
-                getRoutes()?.route == ele?.route
-                  ? "active-page allnav"
-                  : " allnav"
-              }
-            >
-              <Link
-                className="Horizontal-list-elements text-color-hover"
-                to={ele.route}
-                style={{ margin: index != 0 ? "0 5px" : "0" }}
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            {pages.current.map((ele, index) => (
+              <li
+                key={index}
+                className={
+                  getRoutes()?.route == ele?.route
+                    ? "active-page allnav"
+                    : " allnav"
+                }
               >
-                <i style={{ padding: "3px" }} className={ele.icon}></i>
-                {ele.name}
-              </Link>
+                <Link
+                  className="Horizontal-list-elements text-color-hover"
+                  to={ele.route}
+                >
+                  <i style={{ padding: "0 7px" }} className={ele.icon}></i>
+                  {ele.name}
+                </Link>
 
-              {ele?.dropdown ? (
-                <div className="dropdown-content">
-                  {ele.dropdown.map((ele, indexx) => (
-                    <Link key={indexx} className="drop-down-link">
-                      {ele?.name}
-                    </Link>
-                  ))}
-                </div>
-              ) : null}
-            </li>
-          ))}
+                {ele?.dropdown ? (
+                  <div className="dropdown-content">
+                    <ele.dropdown />
+                  </div>
+                ) : null}
+              </li>
+            ))}
+          </div>
         </ul>
         <SideMenu
           pages={pages}

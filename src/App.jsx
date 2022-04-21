@@ -2,6 +2,9 @@ import { Route } from "react-router-dom";
 import "./App.css";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
+import "../node_modules/popper.js/dist/popper";
 import Unknown from "./Layout/Unknown";
 import { useTranslation } from "react-i18next";
 function App() {

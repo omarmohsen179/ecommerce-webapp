@@ -45,10 +45,10 @@ function HorizontalSlider() {
   ];
   const { t, i18n } = useTranslation();
   return (
-    <div className="hor-slide" style={{ marginTop: "20px" }}>
+    <div className="hor-slide">
       <div style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}>
-        <h3 className="section-title">
-          <span>Collection</span>
+        <h3 style={{ textAlign: "center" }}>
+          <span>{t("High rated Products")}</span>
         </h3>
       </div>
 

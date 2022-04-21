@@ -43,6 +43,13 @@
   justify-content: center;
   width: 100%;
 }
+.worksBlock {
+  background-attachment: fixed;
+  background-position: 50% 0;
+  background-size: cover;
+
+  position: relative;
+}
 .footer-section-title {
   font-size: 20px;
   text-transform: uppercase;

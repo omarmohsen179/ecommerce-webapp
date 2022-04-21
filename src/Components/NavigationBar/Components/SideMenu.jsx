@@ -49,89 +49,11 @@ function SideMenu({ pages, navigation, submenu, openMenu, closeMenu }) {
             {ele?.dropdown ? (
               <div id={"dropdown" + index} className=" collapsiblecontent">
                 <CategoryList
-                  style={{ overflow: "scroll", height: "300px" }}
-                  data={[
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/GooglePlay-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/itunes-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/Playstation-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/Minecraft-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/skype-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/GooglePlay-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/itunes-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/Playstation-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/Minecraft-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/skype-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/GooglePlay-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/itunes-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/Playstation-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/Minecraft-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/skype-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/GooglePlay-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/itunes-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/Playstation-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/Minecraft-logo.jpg",
-                    },
-                    {
-                      image:
-                        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/skype-logo.jpg",
-                    },
-                  ]}
+                  style={{
+                    overflowY: "scroll",
+                    overflowX: "hidden",
+                    height: "400px",
+                  }}
                 />
               </div>
             ) : null}

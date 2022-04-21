@@ -26,7 +26,7 @@ function Footer() {
   return (
     <div
       style={{ backgroundImage: "url(" + back + ")" }}
-      className="footer-container "
+      className="footer-container worksBlock"
     >
       <div style={{ textAlign: "center", color: "white" }}>
         <h1 style={{ textAlign: "center", color: "white" }}>
@@ -48,9 +48,10 @@ function Footer() {
             value={values.searchinput}
           ></input>
         </form>
+
         <button className="sub-button">Subscribe </button>
       </div>
-      <div style={{ backgroundColor: "#ffffffeb" }}>
+      <div style={{ backgroundColor: "white" }}>
         <div className="row main-footer max-width">
           <div className={"col-lg-4 col-md-4 col-sm-12"}>
             <h2 className="footer-section-title">Al medad soft</h2>

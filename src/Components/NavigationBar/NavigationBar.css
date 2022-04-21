@@ -176,7 +176,9 @@
   background: white;
   min-width: 100vw;
 }
-
+.active-page {
+  color: #5ba8dc;
+}
 @media screen and (max-width: 1000px) {
   .transition {
     height: 390px !important;
@@ -195,11 +197,7 @@
     transition: height 0.3s;
     height: 56px;
   }
-  .active-page {
-    background-color: #004e91;
-    margin: auto;
-    width: 96%;
-  }
+
   .DropDownList2 {
     height: 0;
     padding: 0;
