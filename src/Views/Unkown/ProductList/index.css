@@ -99,7 +99,7 @@ select {
   border: 1px solid #ddd;
   /* border-radius: 6px; */
   float: left;
-  margin-top: 1.5rem !important;
+
 }
 
 #filterbar input[type="radio"] {

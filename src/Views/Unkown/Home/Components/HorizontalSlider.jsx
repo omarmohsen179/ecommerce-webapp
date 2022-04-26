@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import OwlCarousel from "react-owl-carousel";
 import ProductCard from "../../../../Components/ProductCard";
+import TitleHeader from "../../../../Components/TitleHeader";
 
 function HorizontalSlider() {
   const data = [
@@ -46,20 +47,21 @@ function HorizontalSlider() {
   const { t, i18n } = useTranslation();
   return (
     <div className="hor-slide">
-      <div style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}>
-        <h3 style={{ textAlign: "center" }}>
-          <span>{t("High rated Products")}</span>
-        </h3>
+
+      <div >
+       <TitleHeader title={t("New")} details={"Item"} shaded={"Trendy"}/>
+
       </div>
 
       <OwlCarousel
         //stageClass={"container owl-stage-outerx"}
         res
         items={5}
-        autoplay={true}
+        //autoplay={true}   loop
         className="owl-theme"
-        loop
+     
         margin={20}
+        height={"100%"}
         nav
         navText={[
           "<i class='fas fa-angle-left'></i>",
@@ -71,10 +73,10 @@ function HorizontalSlider() {
             items: 1,
           },
           600: {
-            items: 3,
+            items: 1,
           },
           1000: {
-            items: 5,
+            items: 3,
           },
         }}
       >

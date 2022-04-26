@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import Image from "../Image";
+import TitleHeader from "../TitleHeader";
 import "./index.css";
 function CategoryList({ data = [], style, title }) {
   const datax = [
@@ -91,10 +92,9 @@ function CategoryList({ data = [], style, title }) {
       style={({ backgroundColor: "#e8e8e8" }, style)}
     >
       {title ? (
-        <h2 style={{ textAlign: "center" }}>
-          {" "}
-          <span>{t(title)}</span>
-        </h2>
+    
+              <TitleHeader title={t(title)} />
+      
       ) : null}
       <div
         className="row"

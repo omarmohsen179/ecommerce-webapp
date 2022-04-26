@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import OwlCarousel from "react-owl-carousel";
 import ProductCard from "../../../../Components/ProductCard";
+import TitleHeader from "../../../../Components/TitleHeader";
 
 function Post() {
   const { t, i18n } = useTranslation();
@@ -11,10 +12,11 @@ function Post() {
       id="about"
       style={{ textAlign: "center" }}
     >
+       <TitleHeader title="about us" details={"Tradition since "} shaded={"1889"}/>
       <div class="w3-col  w3-padding-large">
-        <h3 class="w3-center">About Us</h3>
+    
         <br />
-        <h5 class="w3-center">Tradition since 1889</h5>
+        <h5 class="w3-center"></h5>
         <p class="w3-large">
           The Catering was founded in blabla by Mr. Smith in lorem ipsum dolor
           sit amet, consectetur adipiscing elit consectetur adipiscing elit, sed

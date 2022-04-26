@@ -1,9 +1,11 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Image from "../Image";
 import "./index.css";
 function ProductCard({ ele }) {
+  let history =useHistory()
   return (
-    <card className="post-card">
+    <div onClick={()=>history.push("/item?I=1")} className="post-card card">
       <div
         style={{
           height: "300px",
@@ -13,6 +15,8 @@ function ProductCard({ ele }) {
         }}
       >
         <Image src={ele.image} />
+
+      </div>
         <div className="post-card-option">
           <div className="product-icons">
             <i class=" fa-solid fa-solid fa-heart"></i>
@@ -24,8 +28,6 @@ function ProductCard({ ele }) {
             <i class="fa-solid fa-cart-arrow-down"></i>
           </div>
         </div>
-      </div>
-
       <div className="product-details">
         <p className="product-title text-color-hover">{ele.title}</p>
 
@@ -39,7 +41,7 @@ function ProductCard({ ele }) {
 
         <p className="price text-color-hover"> {ele.price}</p>
       </div>
-    </card>
+    </div>
   );
 }
 

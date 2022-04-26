@@ -35,7 +35,7 @@ function NavigationBar() {
     {
       icon: "fas fa-newspaper",
       name: "Blogs ",
-      route: "/listinings",
+      route: "/blogs",
     },
 
     { icon: "fas fa-address-card", name: "About", route: "/gallery" },
@@ -89,7 +89,7 @@ function NavigationBar() {
     });
   }, [window]);
   const getRoutes = useCallback(() => {
-    return pages.current.filter((ele) => location.pathname == ele.route)[0];
+    return pages.current.filter((ele) => location.pathname === ele.route)[0];
   }, [location.pathname]);
   useEffect(() => {
     window.addEventListener("resize", setDimension);
@@ -156,6 +156,7 @@ function NavigationBar() {
             <div
               className="search-input"
               style={{ backgroundColor: "white", margin: "auto" }}
+                            onSubmit={()=>history.push("/list?q=" + values.searchinput + "&c=x")}
             >
               <input
                 className="search-input-element"
@@ -235,22 +236,26 @@ function NavigationBar() {
           <div className="hide-web" style={{ justifyContent: "center" }}>
             <img onClick={() => history.push("/")} src={logo} width={"200px"} />
           </div>
-          <form className="search-input hide-mobile">
+          <form 
+          onSubmit={(event)=>{
+            event.preventDefault();
+            history.push("/list?q=" + values.searchinput + "&c=x")}}
+          className="search-input hide-mobile">
             <input
+            
               className="search-input-element"
-              placeholder="Search here..."
+              placeholder="Search here...ccc"
               name="searchinput"
               onChange={handleChange}
               value={values.searchinput}
             ></input>
-            <a
-              onClick={() => {
-                history.push("/list?q=" + values.searchinput + "&c=x");
-              }}
-              style={{ margin: "auto 15px", cursor: "pointer" }}
+            <button
+            
+             type="submit"
+              style={{ margin: "auto 15px", cursor: "pointer",border:0   }}
             >
               <i className="fa-solid fa-magnifying-glass"></i>
-            </a>
+            </button>
           </form>
         </div>
         <div
@@ -279,18 +284,15 @@ function NavigationBar() {
               alignSelf: "center",
             }}
           >
-            <a href="#" class="notification">
-              <i class=" padding-icons-class  text-color-hover fa-solid fa-heart"></i>
-              <span class="badge">3</span>
-            </a>
-            <a href="#" class="notification">
-              <i class=" padding-icons-class  text-color-hover fa-solid fa-arrows-rotate"></i>
-              <span class="badge">3</span>
-            </a>
-            <a href="#" class="notification">
+                        <a href="#" class="notification">
               <i class=" padding-icons-class  text-color-hover fa-solid fa-cart-arrow-down"></i>
               <span class="badge">3</span>
             </a>
+            <a href="#" class="notification" >
+              <i class=" padding-icons-class  text-color-hover fas fa-circle-user"  ></i>
+              <span class="badge">3</span>
+            </a>
+
           </div>
         </div>
       </div>

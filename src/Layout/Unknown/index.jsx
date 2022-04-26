@@ -13,6 +13,7 @@ import Login from "../../Views/Unkown/Login";
 import ResetPassword from "../../Views/Unkown/ResetPassword";
 import ProductList from "../../Views/Unkown/ProductList";
 import Product from "../../Views/Unkown/Product";
+import Blogs from "../../Views/Unkown/Blogs";
 
 function Unknown() {
   useEffect(() => (window.onscroll = onScroll), []);
@@ -57,6 +58,7 @@ function Unknown() {
           <Route path="/list" component={ProductList} />
           <Route path="/reset-password" component={ResetPassword} />
           <Route path="/item" component={Product} />
+          <Route path="/blogs" component={Blogs} />
           <Route path="/create-account" component={CreateAccount} />
           <Route path={"/not-found"} component={() => <h1>Not Found</h1>} />
           <Redirect to={"/"} />

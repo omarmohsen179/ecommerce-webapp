@@ -3,77 +3,72 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import "./index.css";
 import useQuery from "../../../Components/useQuery";
-import { useRef } from "react";
-import ItemCard from "./Components/ItemCard";
+
 import SideBar from "./Components/SideBar";
+import ProductCard from "../../../Components/ProductCard";
+import TitleHeader from "../../../Components/TitleHeader";
+import { useState } from "react";
+import PaginatedItems from "../../../Components/Pagination";
 function ProductList() {
   const { t, i18n } = useTranslation();
   let history = useHistory();
   let query = useQuery();
+  const [queryString,setqueryString]=useState({});
+    const [currentItems, setCurrentItems] = useState(null);
   useEffect(() => {
     const querydata = {
       search: query.get("q"),
       category: query.get("c") ? query.get("c") : "",
     };
-    console.log(querydata);
+    setqueryString(querydata);
   }, []);
-  var count = useRef(0),
-    count2 = useRef(0);
-  function changeBtnTxt() {
-    console.log("here");
-    var filterBtn = document.getElementById("filter-btn");
-    var btnTxt = document.getElementById("btn-txt");
-    var filterAngle = document.getElementById("filter-angle");
-    count++;
-    if (count % 2 != 0) {
-      filterAngle.classList.add("fa-angle-right");
-      btnTxt.innerText = "show filters";
-      filterBtn.style.backgroundColor = "#36a31b";
-    } else {
-      filterAngle.classList.remove("fa-angle-right");
-      btnTxt.innerText = "hide filters";
-      filterBtn.style.backgroundColor = "#ff935d";
-    }
-  }
   const data = [
     {
-      title: "Torn Jeans for Men",
       image:
-        "https://www.freepnglogos.com/uploads/jeans-png/jeans-mens-pants-cliparts-download-clip-art-37.png",
+        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/catalog/product/cache/7948183ab8341f894cfbbb22f78ef56d/n/i/nintendo_eshop_card_us_.jpg",
+      title: "Apple (iTunes ) USA",
+      price: 1234,
     },
     {
-      title: "Torn Jeans for Men",
       image:
-        "https://www.freepnglogos.com/uploads/jeans-png/jeans-mens-pants-cliparts-download-clip-art-37.png",
+        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/catalog/product/cache/7948183ab8341f894cfbbb22f78ef56d/m/i/microsoftteams-image_10_1_.png",
+      title: "Apple (iTunes ) USA",
+      price: 1234,
     },
     {
-      title: "Torn Jeans for Men",
       image:
-        "https://www.freepnglogos.com/uploads/jeans-png/jeans-mens-pants-cliparts-download-clip-art-37.png",
+        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/catalog/product/cache/7948183ab8341f894cfbbb22f78ef56d/f/i/file_4.png",
+      title: "Apple (iTunes ) USA",
+      price: 1234,
     },
     {
-      title: "Torn Jeans for Men",
       image:
-        "https://www.freepnglogos.com/uploads/jeans-png/jeans-mens-pants-cliparts-download-clip-art-37.png",
+        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/catalog/product/cache/7948183ab8341f894cfbbb22f78ef56d/m/i/microsoftteams-image_10_1_.png",
+      title: "Apple (iTunes ) USA",
+      price: 1234,
+    },
+
+    {
+      image:
+        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/catalog/product/cache/7948183ab8341f894cfbbb22f78ef56d/f/i/file_4.png",
+      title: "Apple (iTunes ) USA",
+      price: 1234,
     },
     {
-      title: "Torn Jeans for Men",
       image:
-        "https://www.freepnglogos.com/uploads/jeans-png/jeans-mens-pants-cliparts-download-clip-art-37.png",
-    },
-    {
-      title: "Torn Jeans for Men",
-      image:
-        "https://www.freepnglogos.com/uploads/jeans-png/jeans-mens-pants-cliparts-download-clip-art-37.png",
+        "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/catalog/product/cache/7948183ab8341f894cfbbb22f78ef56d/f/i/file_4.png",
+      title: "Apple (iTunes ) USA",
+      price: 1234,
     },
   ];
+
   return (
-    <div class="container">
+    <div  class="container"     style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}>
+         <TitleHeader title={queryString['category']} details={"Item"} shaded={"Trendy"}/>
       <div
         class="bg-white rounded d-flex align-items-center justify-content-between"
         id="header"
       >
-        {" "}
         <a
           className="text-color-hover"
           data-bs-toggle="collapse"
@@ -85,58 +80,28 @@ function ProductList() {
           style={{ color: "black" }}
         >
           <span class="fas fa-filter" id="filter-angle"></span>
+            <span       style={{ padding:2,fontWeight:"600" }} id="filter-angle">Filter</span>
         </a>
-        <div class="ml-auto mt-3 mr-2">
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item">
-                {" "}
-                <a class="page-link" href="#" aria-label="Previous">
-                  {" "}
-                  <span aria-hidden="true" class="font-weight-bold">
-                    &lt;
-                  </span>{" "}
-                  <span class="sr-only">Previous</span>{" "}
-                </a>{" "}
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
-                  ..
-                </a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
-                  24
-                </a>
-              </li>
-              <li class="page-item">
-                {" "}
-                <a class="page-link" href="#" aria-label="Next">
-                  {" "}
-                  <span aria-hidden="true" class="font-weight-bold">
-                    &gt;
-                  </span>{" "}
-                  <span class="sr-only">Next</span>{" "}
-                </a>{" "}
-              </li>
-            </ul>
-          </nav>
-        </div>
+
       </div>
-      <div id="content" class="my-5">
-        <SideBar />
+      <div >
+        <div >
+      <SideBar />
+        </div>
+  
         <div id="products">
           <div class="row mx-0">
-            {data.map(() => (
-              <ItemCard />
+            {data.map((ele) => (
+            <div class="col-lg-4 col-md-6 col-sm-12 pt-md-4 pt-3">
+              <ProductCard ele={ele} />
+            </div>
             ))}
           </div>
         </div>
+      <div style={{display:"flex",justifyContent:"center",marginTop:"50px"}}>
+      <PaginatedItems itemsPerPage={4} data={[]} setCurrentItems={setCurrentItems} />
+        </div>
+  
       </div>
     </div>
   );

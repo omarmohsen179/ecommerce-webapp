@@ -40,7 +40,7 @@ function SideBar() {
     },
   ];
   return (
-    <div id="filterbar" className="collapse">
+    <div id="filterbar" className="collapse ">
       <div className="box border-bottom">
         <div className="box-label text-uppercase d-flex align-items-center">
           Sort By
@@ -170,6 +170,10 @@ function SideBar() {
             Example range
           </label>
           <input type="range" class="form-range" id="customRange1" />
+                                  <div id="slider-example-3" class="mt-4">
+                          <input type="hidden" class="custom-slider-input"/>
+                          <input type="hidden" class="custom-slider-input"/> </div>
+               
         </div>
       </div>
       <div className="box">

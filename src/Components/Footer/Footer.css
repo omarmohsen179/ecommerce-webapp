@@ -37,6 +37,7 @@
 
   /* margin: auto; */
   outline: 0;
+  border: 0;
 }
 .main-footer h1 {
   display: flex;

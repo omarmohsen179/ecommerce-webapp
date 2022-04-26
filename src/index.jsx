@@ -1,18 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+
 import reportWebVitals from "./reportWebVitals";
 import "antd/dist/antd.css";
 import "animate.css";
 import { LanguageProvider } from "./Service/LanguageContext";
-import { HashRouter } from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
+import App from "./App";
 ReactDOM.render(
-  <HashRouter>
+  <BrowserRouter>
     <LanguageProvider>
       <App />
     </LanguageProvider>
-  </HashRouter>,
+  </BrowserRouter>,
   document.getElementById("root")
 );
 // If you want to start measuring performance in your app, pass a function
