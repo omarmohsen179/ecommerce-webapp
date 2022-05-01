@@ -13,95 +13,6 @@
  * Copyright 2017-* DesignRevision (https://designrevision.com)
  * Copyright 2017-* Catalin Vasile (http://catalin.me)
  */
-:root {
-  --blue: #007bff;
-  --indigo: #674eec;
-  --purple: #8445f7;
-  --pink: #ff4169;
-  --red: #c4183c;
-  --orange: #fb7906;
-  --yellow: #ffb400;
-  --green: #17c671;
-  --teal: #1adba2;
-  --cyan: #00b8d8;
-  --white: #fff;
-  --gray: #868e96;
-  --gray-dark: #343a40;
-  --primary: #007bff;
-  --secondary: #5A6169;
-  --success: #17c671;
-  --info: #00b8d8;
-  --warning: #ffb400;
-  --danger: #c4183c;
-  --light: #FBFBFB;
-  --dark: #212529;
-  --breakpoint-xs: 0;
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-family-monospace: "Roboto Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-
-@media (max-width: 575.98px) {
-  html {
-    font-size: 15px; } }
-
-body {
-  font-size: 1rem;
-  font-weight: 300;
-  color: #5A6169;
-  background-color: #fff; }
-
-a {
-  color: #007bff;
-  text-decoration: none; }
-  a:hover {
-    color: #0056b3;
-    text-decoration: underline; }
-
-b, strong {
-  font-weight: 500; }
-
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: .5rem; }
-
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  display: block; }
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  margin-bottom: 0.75rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 400;
-  color: #3D5170; }
-
-h1, .h1 {
-  font-size: 3.052rem;
-  letter-spacing: -0.0625rem;
-  line-height: 3rem; }
-
-h2, .h2 {
-  font-size: 2.441rem;
-  letter-spacing: -0.0625rem;
-  line-height: 2.25rem; }
-
-h3, .h3 {
-  font-size: 1.953rem;
-  line-height: 2.25rem; }
-
-h4, .h4 {
-  font-size: 1.563rem;
-  line-height: 2rem; }
-
-h5, .h5 {
-  font-size: 1.25rem;
-  line-height: 1.5rem; }
-
-h6, .h6 {
-  font-size: 1rem;
-  line-height: 1.5rem; }
 
 .lead {
   line-height: 1.875rem; }
@@ -3749,13 +3660,6 @@ body {
       font-size: 13px;
       font-weight: 400; } }
 
-a {
-  color: #c4183c; }
-  a:hover {
-    color: #801027; }
-
-label {
-  font-weight: 400; }
 
 .datepicker {
   font-size: .75rem;

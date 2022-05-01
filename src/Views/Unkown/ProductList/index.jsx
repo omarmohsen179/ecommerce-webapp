@@ -13,8 +13,8 @@ function ProductList() {
   const { t, i18n } = useTranslation();
   let history = useHistory();
   let query = useQuery();
-  const [queryString,setqueryString]=useState({});
-    const [currentItems, setCurrentItems] = useState(null);
+  const [queryString, setqueryString] = useState({});
+  const [currentItems, setCurrentItems] = useState(null);
   useEffect(() => {
     const querydata = {
       search: query.get("q"),
@@ -63,10 +63,17 @@ function ProductList() {
   ];
 
   return (
-    <div  class="container"     style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}>
-         <TitleHeader title={queryString['category']} details={"Item"} shaded={"Trendy"}/>
+    <div
+      className="container product-list"
+      style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}
+    >
+      <TitleHeader
+        title={queryString["category"]}
+        details={"Item"}
+        shaded={"Trendy"}
+      />
       <div
-        class="bg-white rounded d-flex align-items-center justify-content-between"
+        className="bg-white rounded d-flex align-items-center justify-content-between"
         id="header"
       >
         <a
@@ -79,29 +86,39 @@ function ProductList() {
           id="filter-btn"
           style={{ color: "black" }}
         >
-          <span class="fas fa-filter" id="filter-angle"></span>
-            <span       style={{ padding:2,fontWeight:"600" }} id="filter-angle">Filter</span>
+          <span className="fas fa-filter" id="filter-angle"></span>
+          <span style={{ padding: 2, fontWeight: "600" }} id="filter-angle">
+            Filter
+          </span>
         </a>
-
       </div>
-      <div >
-        <div >
-      <SideBar />
+      <div>
+        <div>
+          <SideBar />
         </div>
-  
+
         <div id="products">
-          <div class="row mx-0">
+          <div className="row mx-0">
             {data.map((ele) => (
-            <div class="col-lg-4 col-md-6 col-sm-12 pt-md-4 pt-3">
-              <ProductCard ele={ele} />
-            </div>
+              <div className="col-lg-4 col-md-6 col-sm-12 pt-md-4 pt-3">
+                <ProductCard ele={ele} />
+              </div>
             ))}
           </div>
         </div>
-      <div style={{display:"flex",justifyContent:"center",marginTop:"50px"}}>
-      <PaginatedItems itemsPerPage={4} data={[]} setCurrentItems={setCurrentItems} />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "50px",
+          }}
+        >
+          <PaginatedItems
+            itemsPerPage={4}
+            data={[]}
+            setCurrentItems={setCurrentItems}
+          />
         </div>
-  
       </div>
     </div>
   );

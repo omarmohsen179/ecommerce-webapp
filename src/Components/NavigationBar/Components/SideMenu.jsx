@@ -9,20 +9,17 @@ function SideMenu({ pages, navigation, submenu, openMenu, closeMenu }) {
     <div id="mySidenav" className="sidenav">
       <ul className=" remove-dot ">
         <li>
-          <Link className=" ">
-            <a
-              className="closebtn text-color-hover "
-              onClick={() => (submenu ? openMenu() : closeMenu())}
-            >
-              &times;
-            </a>
-          </Link>
+          <div
+            className="closebtn text-color-hover "
+            onClick={() => (submenu ? openMenu() : closeMenu())}
+          >
+            &times;
+          </div>
         </li>
         {pages.current.map((ele, index) => (
           <li key={index}>
             <div
               id={"dropdownmain" + index}
-              a
               className={
                 ele?.dropdown
                   ? i18n.language === "en"

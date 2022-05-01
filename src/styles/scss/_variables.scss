@@ -176,11 +176,11 @@ $dropdown-icon-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBo
 $dropdown-icon-width: 0.875rem;
 $dropdown-icon-height: 0.5625rem;
 $dropdown-icon-background-position: center center;
-$dropdown-icon-transition: transform $transition-duration ease-in-out;
-
+//$dropdown-icon-transition: transform $transition-duration ease-in-out;
+$dropdown-icon-transition: transform 0.3s ease-in-out;
 $main-sidebar-height: calc(100vh) !default;
 $main-sidebar-zindex: 1070 !default;
-$main-sidebar-background: $white !default;
+$main-sidebar-background: white !default;
 $main-sidebar-will-change: transform !default;
 $main-sidebar-transition: transform 200ms ease-in-out !default;
 
@@ -244,7 +244,7 @@ $card-post-author-avatar-width: 2.8125rem !default;        // 45px
 $card-post-author-avatar-height: 2.8125rem !default;       // 45px
 $card-post-author-avatar-small-width: 2.1875rem !default;  // 35px
 $card-post-author-avatar-small-height: 2.1875rem !default; // 35px
-$card-post-author-avatar-box-shadow: 0 0 0 0.125rem $white, 0 0.1875rem 0.4375rem rgba($blueish-grey, 0.5) !default;
+$card-post-author-avatar-box-shadow: 0 0 0 0.125rem white, 0 0.1875rem 0.4375rem rgba(#6699CC, 0.5) !default;
 
 
 // Components -> Card Post -> Variation 1

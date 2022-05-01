@@ -19,8 +19,8 @@
   &__image {
     position: relative;
     min-height: $card-post-image-min-height;
-    border-top-left-radius: $card-border-radius;
-    border-top-right-radius: $card-border-radius;
+    border-top-left-radius: 25%;
+    border-top-right-radius: 25%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -56,8 +56,8 @@
 
     .card-post__image {
       border-top-right-radius: 0;
-      border-top-left-radius: $card-border-radius;
-      border-bottom-left-radius: $card-border-radius;
+      border-top-left-radius: 25%;
+      border-bottom-left-radius:25%;
       min-width: 180px;
     }
   }

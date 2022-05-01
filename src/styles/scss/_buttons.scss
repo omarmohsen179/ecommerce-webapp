@@ -12,7 +12,7 @@
     box-shadow: none !important;
     background-color: $accent-color;
     border-color: $accent-color;
-    color: $white;
+    color: white;
 
     + .btn {
       border-left: 1px solid $accent-color;
@@ -20,8 +20,8 @@
   }
 
   &:hover {
-    background: $white;
-    border-color: $white;
+    background:white;
+    border-color:white;
     box-shadow: 0px 0.125rem 0.625rem rgba($reagent-gray, .2),
                 0 0.0625rem 0.125rem rgba($reagent-gray, .3);
   }
@@ -49,18 +49,16 @@
   }
 
   // Existent theme colors
-  @each $color, $value in $theme-colors {
-    @include btn-active-modifier($color, $value);
-  }
+
 }
 
 
 // Button variation for the accent color.
 .btn-accent {
-  @include button-variant($accent-color);
+
 }
 
 // Outline button variation for the accent color.
 .btn-outline-accent {
-  @include button-outline-variant($accent-color);
+ 
 }

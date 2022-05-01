@@ -4,13 +4,13 @@
 .dropdown {
   .fa,
   .material-icons {
-    color: lighten($blueish-grey, 40);
+    color: lighten(#6699CC, 40);
     margin-right: 0.25rem;
   }
 
   .dropdown-item {
     &:hover {
-      background-color: lighten($blueish-grey, 60);
+      background-color: lighten(#6699CC, 60);
     }
   }
 }

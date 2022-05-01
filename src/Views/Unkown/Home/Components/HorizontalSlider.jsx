@@ -47,27 +47,23 @@ function HorizontalSlider() {
   const { t, i18n } = useTranslation();
   return (
     <div className="hor-slide">
-
-      <div >
-       <TitleHeader title={t("New")} details={"Item"} shaded={"Trendy"}/>
-
+      <div>
+        <TitleHeader title={t("New")} details={"Item"} shaded={"Trendy"} />
       </div>
 
       <OwlCarousel
-        //stageClass={"container owl-stage-outerx"}
-        res
+        //stageclassName={"container owl-stage-outerx"}
+
         items={5}
         //autoplay={true}   loop
         className="owl-theme"
-     
         margin={20}
         height={"100%"}
         nav
         navText={[
-          "<i class='fas fa-angle-left'></i>",
-          "<i class='fas fa-angle-right'></i>",
+          "<i className='fas fa-angle-left'></i>",
+          "<i className='fas fa-angle-right'></i>",
         ]}
-        responsiveClass={true}
         responsive={{
           0: {
             items: 1,
@@ -80,8 +76,10 @@ function HorizontalSlider() {
           },
         }}
       >
-        {data.map((ele) => (
-          <ProductCard ele={ele} />
+        {data.map((ele, index) => (
+          <div key={index}>
+            <ProductCard ele={ele} />
+          </div>
         ))}
       </OwlCarousel>
     </div>

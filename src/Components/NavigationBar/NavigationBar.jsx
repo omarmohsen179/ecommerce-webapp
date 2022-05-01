@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./NavigationBar.css";
-import logo from "./logomain.png";
+import logo from "../../Assets/logomain.png";
 
 import { useLocation, Link, useHistory } from "react-router-dom";
 import SideMenu from "./Components/SideMenu";
@@ -114,11 +114,13 @@ function NavigationBar() {
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          style={{ backgroundColor: "transparent", cursor: "pointer " }}
+          style={{
+            backgroundColor: "transparent",
+            cursor: "pointer ",
+            fontSize: "30px",
+          }}
         >
-          <span className="toggler-icon top-bar"></span>
-          <span className="toggler-icon middle-bar"></span>
-          <span className="toggler-icon bottom-bar"></span>
+          <i className="material-icons">&#xE5D2;</i>
         </button>
       </div>
     );
@@ -156,7 +158,9 @@ function NavigationBar() {
             <div
               className="search-input"
               style={{ backgroundColor: "white", margin: "auto" }}
-                            onSubmit={()=>history.push("/list?q=" + values.searchinput + "&c=x")}
+              onSubmit={() =>
+                history.push("/list?q=" + values.searchinput + "&c=x")
+              }
             >
               <input
                 className="search-input-element"
@@ -182,8 +186,8 @@ function NavigationBar() {
                 backgroundColor: "white",
               }}
             >
-              {list.map((ele) => (
-                <div style={{ display: "flex" }}>
+              {list.map((ele, index) => (
+                <div key={index} style={{ display: "flex" }}>
                   <div
                     style={{
                       width: "10%",
@@ -213,7 +217,7 @@ function NavigationBar() {
                 <Buttontoggler />
                 <i
                   style={{ fontSize: "20px", margin: " auto 15px" }}
-                  class="fa-solid fa-magnifying-glass"
+                  className="fa-solid fa-magnifying-glass"
                   onClick={() =>
                     (document.getElementsByClassName(
                       "search-input-mobile-view"
@@ -236,23 +240,23 @@ function NavigationBar() {
           <div className="hide-web" style={{ justifyContent: "center" }}>
             <img onClick={() => history.push("/")} src={logo} width={"200px"} />
           </div>
-          <form 
-          onSubmit={(event)=>{
-            event.preventDefault();
-            history.push("/list?q=" + values.searchinput + "&c=x")}}
-          className="search-input hide-mobile">
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              history.push("/list?q=" + values.searchinput + "&c=x");
+            }}
+            className="search-input hide-mobile"
+          >
             <input
-            
               className="search-input-element"
-              placeholder="Search here...ccc"
+              placeholder="Search here..."
               name="searchinput"
               onChange={handleChange}
               value={values.searchinput}
             ></input>
             <button
-            
-             type="submit"
-              style={{ margin: "auto 15px", cursor: "pointer",border:0   }}
+              type="submit"
+              style={{ margin: "auto 15px", cursor: "pointer", border: 0 }}
             >
               <i className="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -267,13 +271,13 @@ function NavigationBar() {
           }}
         >
           <b className="hide-mobile">
-            <Link
+            <div
               onClick={() => history.push("/log-in")}
               className="text-remove-style  text-color-hover"
               style={{ padding: "0 5px" }}
             >
               LOGIN
-            </Link>
+            </div>
             |
           </b>
 
@@ -284,15 +288,17 @@ function NavigationBar() {
               alignSelf: "center",
             }}
           >
-                        <a href="#" class="notification">
-              <i class=" padding-icons-class  text-color-hover fa-solid fa-cart-arrow-down"></i>
-              <span class="badge">3</span>
+            <a href="#" className="notification">
+              <i className=" padding-icons-class  text-color-hover fa-solid fa-cart-arrow-down"></i>
+              <span className="badge">3</span>
             </a>
-            <a href="#" class="notification" >
-              <i class=" padding-icons-class  text-color-hover fas fa-circle-user"  ></i>
-              <span class="badge">3</span>
+            <a className="notification">
+              <i
+                onClick={() => history.push("/dashboard")}
+                className=" padding-icons-class  text-color-hover fas fa-circle-user"
+              ></i>
+              <span className="badge">3</span>
             </a>
-
           </div>
         </div>
       </div>

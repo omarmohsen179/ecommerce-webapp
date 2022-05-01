@@ -11,9 +11,6 @@
     margin: $page-title-margin;
     padding: $page-title-padding;
 
-    @include media-breakpoint-down(sm) {
-      font-size: $page-title-sm-font-size;
-    }
   }
 
   .page-subtitle {
@@ -21,9 +18,5 @@
     color: $page-subtitle-color;
     font-size: $page-subtitle-font-size;
 
-    @include media-breakpoint-down(sm) {
-      font-size: $page-subtitle-font-size-sm;
-      font-weight: $page-subtitle-font-weight-sm;
-    }
   }
 }

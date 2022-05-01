@@ -12,9 +12,7 @@
     &-icon {
       color: $nav-link-icon-color;
 
-      @include hover-focus {
-        color: darken($nav-link-icon-color, 10);
-      }
+
 
       &__wrapper {
         position: relative;

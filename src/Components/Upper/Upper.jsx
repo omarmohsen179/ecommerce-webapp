@@ -9,15 +9,15 @@ function Upper({ BackgroundImage }) {
       <div className="row center-content-upper-main container">
         <div className="col-lg-3 col-md-3 col-sm-12">
           <div className="Upper-container ">
-            <h2 class="small-heading">Shared Hosting</h2>
-            <h2 class="large-heading">Web hosting done right.</h2>
+            <h2 className="small-heading">Shared Hosting</h2>
+            <h2 className="large-heading">Web hosting done right.</h2>
             <ButtonComponent Text={"Host Your Site"} />
-            <div class="price">
+            <div className="price">
               <strong>
-                <span class="starting-price">
+                <span className="starting-price">
                   <p>Starting at</p>
-                  <span class="currency-symbol">$</span>2.95
-                  <span class="term-text">/mo*</span>
+                  <span className="currency-symbol">$</span>2.95
+                  <span className="term-text">/mo*</span>
                 </span>
               </strong>
             </div>
@@ -46,8 +46,8 @@ function Upper({ BackgroundImage }) {
         </div>
         <div className="col-lg-3 col-md-3  col-sm-12">
           <div className="Upper-container ">
-            <h2 class="small-heading">Shared Hosting</h2>
-            <h2 class="large-heading">Web hosting done right.</h2>
+            <h2 className="small-heading">Shared Hosting</h2>
+            <h2 className="large-heading">Web hosting done right.</h2>
             <ButtonComponent Text={"Host Your Site"} />
             <div className="Upper-title">
               RealTors

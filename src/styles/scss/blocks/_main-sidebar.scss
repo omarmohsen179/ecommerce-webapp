@@ -10,10 +10,6 @@
   transition: $main-sidebar-transition;
   box-shadow: $side-shadow;
 
-  @include media-breakpoint-down(sm) {
-    transform: translateX(-100%);
-    box-shadow: none;
-  }
 
   // Opened state
   &.open {
@@ -41,9 +37,7 @@
     height: $main-navbar-height;
     font-size: $main-navbar-brand-font-size;
 
-    @include media-breakpoint-down(md) {
-      font-size: 90%;
-    }
+
   }
 
   .nav-wrapper {
@@ -192,16 +186,7 @@
   }
 
   &__search {
-    @include media-breakpoint-down(sm) {
-      box-sizing: border-box;
-      border-right: 0 !important;
-      padding: 0.625rem 0;
-      border-bottom: 1px solid $border-color;
 
-      .input-group {
-        margin: 0 !important;
-      }
-    }
   }
 }
 
@@ -225,8 +210,6 @@
     font-size: 0.8125rem;
     border-radius: 0;
 
-    @include hover-focus {
-      box-shadow: none;
-    }
+
   }
 }

@@ -29,7 +29,7 @@ const AppHero = ({ t, i18n = {} }) => {
     <>
       <div className="heroBlock  ">
         <OwlCarousel
-          //stageClass={"container owl-stage-outerx"}
+          //stageclassName={"container owl-stage-outerx"}
 
           items={1}
           autoplay={true}
@@ -38,12 +38,12 @@ const AppHero = ({ t, i18n = {} }) => {
           margin={20}
           nav
           navText={[
-            "<i class='fas fa-angle-left'></i>",
-            "<i class='fas fa-angle-right'></i>",
+            "<i className='fas fa-angle-left'></i>",
+            "<i className='fas fa-angle-right'></i>",
           ]}
         >
-          {data.map((ele) => (
-            <div style={{ maxHeight: "500px" }}>
+          {data.map((ele, index) => (
+            <div key={index} style={{ maxHeight: "500px" }}>
               <Image src={ele.ImagePath} />
             </div>
           ))}

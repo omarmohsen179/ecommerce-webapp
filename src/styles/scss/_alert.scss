@@ -2,11 +2,11 @@
 
 // Alternate style for the accent color
 .alert-accent {
-  color: lighten($accent-color, 48%);
+  color: lighten(#565554, 48%);
   background-color: $accent-color;
 
   .alert-link {
-    color: lighten($accent-color, 48%);
+    color: lighten(#565554, 48%);
   }
 }
 

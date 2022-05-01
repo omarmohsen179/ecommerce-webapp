@@ -15,14 +15,6 @@
   .notifications {
     position: relative;
 
-    @include media-breakpoint-down(sm) {
-      position: static;
-
-      .dropdown-menu {
-        min-width: 100% !important;
-        border-left: none;
-      }
-    }
 
     .badge {
       position: absolute;
@@ -39,10 +31,6 @@
       left: auto;
 
       // Adjust the dropdown menu on smaller screens.
-      @include media-breakpoint-down(sm) {
-        left: 0;
-        right: 0;
-      }
 
       .dropdown-item {
         white-space: normal;
@@ -107,8 +95,8 @@
           display: block;
           font-weight: 500;
           font-size: 11px;
-          border-bottom-left-radius: $border-radius;
-          border-bottom-right-radius: $border-radius;
+          border-bottom-left-radius: 25%;
+          border-bottom-right-radius: 25%;
         }
       }
     }

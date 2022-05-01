@@ -3,7 +3,7 @@ import React from "react";
 function Collaps({ children }) {
   return (
     <div>
-      <div class="collapsiblecontent">
+      <div className="collapsiblecontent">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

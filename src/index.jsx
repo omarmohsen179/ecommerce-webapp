@@ -1,19 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-
+import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import "antd/dist/antd.css";
+import configureStore from "./Store/ConfigureStore";
 import "animate.css";
 import { LanguageProvider } from "./Service/LanguageContext";
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 ReactDOM.render(
-  <BrowserRouter>
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
-  </BrowserRouter>,
+  <Provider store={configureStore()}>
+    <BrowserRouter>
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
 // If you want to start measuring performance in your app, pass a function

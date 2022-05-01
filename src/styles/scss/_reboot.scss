@@ -32,9 +32,6 @@ body {
 a {
   color: $accent-color;
 
-  @include hover {
-    color: darken($accent-color, 15%);
-  }
 }
 
 

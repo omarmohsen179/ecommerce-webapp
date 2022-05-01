@@ -166,14 +166,14 @@ function SideBar() {
               <span id="amount-right" className="font-weight-bold"></span> 10000
             </div>
           </div>
-          <label for="customRange1" class="form-label">
+          <label for="customRange1" className="form-label">
             Example range
           </label>
-          <input type="range" class="form-range" id="customRange1" />
-                                  <div id="slider-example-3" class="mt-4">
-                          <input type="hidden" class="custom-slider-input"/>
-                          <input type="hidden" class="custom-slider-input"/> </div>
-               
+          <input type="range" className="form-range" id="customRange1" />
+          <div id="slider-example-3" className="mt-4">
+            <input type="hidden" className="custom-slider-input" />
+            <input type="hidden" className="custom-slider-input" />{" "}
+          </div>
         </div>
       </div>
       <div className="box">

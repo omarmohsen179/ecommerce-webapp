@@ -91,17 +91,13 @@ function CategoryList({ data = [], style, title }) {
       className=" main-category-container"
       style={({ backgroundColor: "#e8e8e8" }, style)}
     >
-      {title ? (
-    
-              <TitleHeader title={t(title)} />
-      
-      ) : null}
+      {title ? <TitleHeader title={t(title)} /> : null}
       <div
         className="row"
         style={{ display: "flex", justifyContent: "center" }}
       >
-        {datax.map((ele) => (
-          <div style={{ width: "120px" }}>
+        {datax.map((ele, index) => (
+          <div key={index} style={{ width: "120px" }}>
             <div
               className="border-item"
               style={{

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import NavigationBar from "../../Components/NavigationBar/NavigationBar";
 
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import Home from "../../Views/Unkown/Home";
 
 import Footer from "../../Components/Footer/index2";
@@ -15,34 +15,39 @@ import ProductList from "../../Views/Unkown/ProductList";
 import Product from "../../Views/Unkown/Product";
 import Blogs from "../../Views/Unkown/Blogs";
 
-function Unknown() {
+function Unknown({ match }) {
   useEffect(() => (window.onscroll = onScroll), []);
   const onScroll = () => {
-    var navbar = document.getElementById("navbar");
-    var navbarin = document.getElementById("nav-up-container-id");
-    var mybutton = document.getElementById("return-top-button");
-    var content = document.getElementsByClassName("dropdown-content");
-    var sticky = navbar.offsetTop;
-    if (window.pageYOffset > sticky + 50) {
-      navbar.classList.add("sticky");
-      for (var i = 0; i < content.length; i++) {
-        content[i].classList.add("down-nav");
+    try {
+      var navbar = document.getElementById("navbar");
+      var navbarin = document.getElementById("nav-up-container-id");
+      var mybutton = document.getElementById("return-top-button");
+      var content = document.getElementsByClassName("dropdown-content");
+      var sticky = navbar?.offsetTop;
+      if (window.pageYOffset > sticky + 50) {
+        navbar.classList.add("sticky");
+        for (var i = 0; i < content.length; i++) {
+          content[i].classList.add("down-nav");
+        }
+        mybutton.style.display = "block";
+        navbarin.classList.remove("nav-up-container");
+      } else {
+        navbar.classList.remove("sticky");
+        mybutton.style.display = "none";
+        for (var i = 0; i < content.length; i++) {
+          content[i].classList.remove("down-nav");
+        }
+        navbarin.classList.add("nav-up-container");
       }
-      mybutton.style.display = "block";
-      navbarin.classList.remove("nav-up-container");
-    } else {
-      navbar.classList.remove("sticky");
-      mybutton.style.display = "none";
-      for (var i = 0; i < content.length; i++) {
-        content[i].classList.remove("down-nav");
-      }
-      navbarin.classList.add("nav-up-container");
-    }
+    } catch (err) {}
   };
+  let history = useHistory();
   // <Redirect to="/" />
+  console.log(`${match.url}/log-in`);
   return (
     <div>
       <ScrollTop />
+
       <div className="header">
         <LangueNavBar />
       </div>
@@ -51,17 +56,30 @@ function Unknown() {
       </div>
       <div className="main_body">
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/log-in" component={Login} />
-          <Route path="/forget-password" component={ForgetPassword} />
+          <Route exact path={`${match.url}`} component={Home} />
+          <Route exact path={`${match.url}log-in`} component={Login} />
+          <Route
+            path={`${match.url}forget-password`}
+            exact
+            component={ForgetPassword}
+          />
 
-          <Route path="/list" component={ProductList} />
-          <Route path="/reset-password" component={ResetPassword} />
-          <Route path="/item" component={Product} />
-          <Route path="/blogs" component={Blogs} />
-          <Route path="/create-account" component={CreateAccount} />
-          <Route path={"/not-found"} component={() => <h1>Not Found</h1>} />
-          <Redirect to={"/"} />
+          <Route path={`${match.url}list`} component={ProductList} />
+          <Route
+            path={`${match.url}reset-password`}
+            exact
+            component={ResetPassword}
+          />
+          <Route path={`${match.url}item`} component={Product} />
+          <Route path={`${match.url}blogs`} component={Blogs} />
+          <Route
+            path={`${match.url}create-account`}
+            component={CreateAccount}
+          />
+          <Route
+            path={`${match.url}not-found`}
+            component={() => <h1>Not Found</h1>}
+          />
         </Switch>
       </div>
       <button
