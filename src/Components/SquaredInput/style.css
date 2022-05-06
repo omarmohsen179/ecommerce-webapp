@@ -5,9 +5,12 @@
   font-size: inherit;
   font-weight: lighter;
 }
+.squared-input-container {
+  margin: 10px 0 !important;
+}
 .squared-input-container input {
   display: block;
-  margin-bottom: 20px;
+
   padding: 10px;
   width: 100%;
   background-color: white;
@@ -21,4 +24,9 @@
   vertical-align: top;
   font-size: 1em;
   line-height: 1.25em;
+}
+.error-text {
+  display: flex;
+  justify-content: flex-end;
+  color: #ff8787;
 }

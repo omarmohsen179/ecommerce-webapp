@@ -61,8 +61,8 @@ function HorizontalSlider() {
         height={"100%"}
         nav
         navText={[
-          "<i className='fas fa-angle-left'></i>",
-          "<i className='fas fa-angle-right'></i>",
+          "<i class='fas fa-angle-left'></i>",
+          "<i class='fas fa-angle-right'></i>",
         ]}
         responsive={{
           0: {

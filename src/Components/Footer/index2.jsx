@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import "./Footer2.css";
 import "./Footer.css";
 import back from "../../Assets/footer.jpg";
-import { useLocation, Link } from "react-router-dom";
+import { text } from "../../styles/constant";
 function Footer2() {
   let pages = useRef([
     { name: "Home", route: "/" },
@@ -26,7 +26,7 @@ function Footer2() {
   }, []);
   return (
     <div
-      style={{ backgroundImage: "url(" + back + ")", zIndex: "1" }}
+      style={{ backgroundImage: "url(" + back + ")", zIndex: "1", color: text }}
       className="footer-container worksBlock"
     >
       <div style={{ textAlign: "center", color: "white" }}>

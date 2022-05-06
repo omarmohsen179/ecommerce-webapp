@@ -20,7 +20,6 @@ function Footer() {
   const colsdiv = "col-lg-3 col-md-3 col-sm-12";
   const [values, setvalues] = useState({});
   const handleChange = useCallback((e) => {
-    console.log({ [e.target.name]: e.target.value });
     setvalues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }, []);
   return (

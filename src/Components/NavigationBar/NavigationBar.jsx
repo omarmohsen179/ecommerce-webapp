@@ -7,6 +7,7 @@ import SideMenu from "./Components/SideMenu";
 import card from "../../Assets/card.png";
 import { useTranslation } from "react-i18next";
 import CategoryList from "../CategoriesList";
+import { theme } from "../../styles/constant";
 function NavigationBar() {
   const location = useLocation();
   let history = useHistory();
@@ -290,14 +291,18 @@ function NavigationBar() {
           >
             <a href="#" className="notification">
               <i className=" padding-icons-class  text-color-hover fa-solid fa-cart-arrow-down"></i>
-              <span className="badge">3</span>
+              <span className="badge" style={{ backgroundColor: theme }}>
+                3
+              </span>
             </a>
             <a className="notification">
               <i
                 onClick={() => history.push("/dashboard")}
                 className=" padding-icons-class  text-color-hover fas fa-circle-user"
               ></i>
-              <span className="badge">3</span>
+              <span className="badge" style={{ backgroundColor: theme }}>
+                3
+              </span>
             </a>
           </div>
         </div>

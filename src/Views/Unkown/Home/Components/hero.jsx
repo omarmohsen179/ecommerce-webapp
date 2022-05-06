@@ -38,8 +38,8 @@ const AppHero = ({ t, i18n = {} }) => {
           margin={20}
           nav
           navText={[
-            "<i className='fas fa-angle-left'></i>",
-            "<i className='fas fa-angle-right'></i>",
+            "<i class='fas fa-angle-left'></i>",
+            "<i class='fas fa-angle-right'></i>",
           ]}
         >
           {data.map((ele, index) => (

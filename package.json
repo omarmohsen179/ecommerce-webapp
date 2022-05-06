@@ -39,6 +39,7 @@
     "redux": "^4.2.0",
     "shards-react": "^1.0.3",
     "shards-ui": "^3.0.0",
+    "validator": "^13.7.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

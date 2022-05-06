@@ -39,7 +39,10 @@ function Login() {
           <div onClick={() => history.push("/forget-password")}>
             <p className="underline-text-hover"> {t("Forgot Password")}</p>
           </div>
-          <div onClick={() => history.push("/create-account")}>
+          <div
+            onClick={() => history.push("/create-account")}
+            style={{ display: "flex", justifyContent: "end" }}
+          >
             <p className="underline-text-hover">{t("Create Account")}</p>
           </div>
         </div>
