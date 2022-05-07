@@ -3,8 +3,6 @@ import { useTranslation } from "react-i18next";
 
 function LangueNavBar() {
   const { t, i18n } = useTranslation();
-
-  useEffect(() => console.log(i18n.language), [i18n]);
   return (
     <div
       className="hide-mobile"

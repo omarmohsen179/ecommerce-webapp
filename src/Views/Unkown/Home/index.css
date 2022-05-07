@@ -35,7 +35,10 @@
 .owl-theme:hover .owl-next {
   opacity: 1;
 }
-
+.owl-theme .owl-nav .disabled {
+  opacity: 0;
+  cursor: default;
+}
 .owl-theme {
   max-width: 1320px !important;
   margin: auto;

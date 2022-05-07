@@ -1,7 +1,4 @@
-import {
-  createAsyncThunk,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import axios, { AxiosError } from "axios";
 import { ApiBaseUrl } from "../Service/config";
@@ -23,7 +20,6 @@ export const userLogin = createAsyncThunk(
         return { ...data };
       })
       .catch((error) => {
-        console.log(error);
         const err = error;
         alert(
           err?.response?.data?.message

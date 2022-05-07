@@ -16,7 +16,7 @@ function SquaredInput({
   return (
     <div style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}>
       <div className="squared-input-container">
-        <label id="domain-label">{label}</label>
+        <label id="domain-label">{t(label)}</label>
         <input
           onChange={handleChange}
           type={type}
@@ -25,7 +25,9 @@ function SquaredInput({
           value={value}
         />
 
-        {errorMessage ? <div className="error-text">{errorMessage}</div> : null}
+        {errorMessage ? (
+          <div className="error-text">{t(errorMessage)}</div>
+        ) : null}
       </div>
     </div>
   );

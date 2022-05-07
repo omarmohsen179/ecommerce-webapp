@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SetSidebarData, side_menu_data } from "../../Store/SidebarReducer";
-import "../../styles/shards-dashboards.1.1.0.min.css";
+import "../../styles/shards-dashboards.1.1.0.css";
 import DefaultLayout from "./layout";
 export default function User({ match }) {
   let [Routes, setRoutes] = useState([]);

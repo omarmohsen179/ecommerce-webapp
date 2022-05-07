@@ -6,25 +6,47 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import LoginTemplate from "../../../Components/LoginTemplate";
 import useQuery from "../../../Components/useQuery";
+import ButtonComponent from "../../../Components/ButtonComponent";
+import { useState } from "react";
+import { CheckInputs } from "../../../Service/SharedApi/SharedFunctions";
+import { useCallback } from "react";
+import { RESET_PASSWORD } from "./Api";
 function ResetPassword({ props }) {
+  const [error, seterror] = useState({});
+  const [Text, settext] = useState("");
+  const [loading, setloading] = useState(false);
+  const [values, setvalues] = useState({});
+  const { t, i18n } = useTranslation();
   let history = useHistory();
+  const handleChange = useCallback(
+    (e) => setvalues((prev) => ({ ...prev, [e.target.name]: e.target.value })),
+    []
+  );
   let query = useQuery();
   useEffect(() => {
-    const querydata = {
-      search: query.get("q"),
-      category: query.get("c"),
-    };
-    console.log(querydata);
     let value = queryString.parse(props.location.search);
     if (!value) {
       history.push("/");
     }
+    setvalues({ ...values, value });
   }, []);
-  const { t, i18n } = useTranslation();
+  const submit = async (e) => {
+    e.preventDefault();
+    seterror(CheckInputs(values, error));
+    if (Object.keys(CheckInputs(values, error)).length > 0) {
+      return;
+    }
+
+    await RESET_PASSWORD(values)
+      .then((res) => {
+        settext("your e-mail been confirmed successfully");
+      })
+      .catch(() => {});
+  };
   return (
     <LoginTemplate>
       <div>
-        <div>
+        <form onSubmit={submit}>
           <div
             style={{
               textAlign: "center",
@@ -35,15 +57,41 @@ function ResetPassword({ props }) {
           >
             {t("Reset password")}
           </div>
-          <SquaredInput label={t("New password")} type={"password"} />
-          <SquaredInput label={t("Confirm Password")} type={"password"} />
-          <button
-            type="button"
-            className="btn btn-primary log-in-bootstrap-button"
-          >
-            {t("Send")}
-          </button>
-        </div>
+          <SquaredInput
+            label={"Password"}
+            handleChange={handleChange}
+            name="Password"
+            value={values["Password"]}
+            errorMessage={error.Password}
+            onBlur={CheckInputs(values, error)}
+          />
+          <SquaredInput
+            label={"Confirm Password"}
+            handleChange={handleChange}
+            name="CPassword"
+            value={values["CPassword"]}
+            errorMessage={error.CPassword}
+            onBlur={(e) =>
+              seterror((prev) => ({
+                ...prev,
+                CPassword:
+                  values.Password === e.target.value
+                    ? ""
+                    : "does not match the password",
+              }))
+            }
+          />
+          <ButtonComponent
+            disable={
+              Object.keys(error)
+                .map((key, index) => error[key] !== "")
+                .filter((e) => e).length > 0 || !values
+            }
+            title="Create"
+            type={"submit"}
+            loading={loading}
+          />
+        </form>
         <div
           style={{
             display: "flex",
@@ -51,11 +99,9 @@ function ResetPassword({ props }) {
             paddingTop: "20px",
           }}
         >
+          <div></div>
           <div>
-            <p className="underline-text-hover">Forgot Password</p>
-          </div>
-          <div>
-            <p className="underline-text-hover">Create Account</p>
+            <p className="underline-text-hover">{t("Create Account")}</p>
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ import ResetPassword from "../../Views/Unkown/ResetPassword";
 import ProductList from "../../Views/Unkown/ProductList";
 import Product from "../../Views/Unkown/Product";
 import Blogs from "../../Views/Unkown/Blogs";
+import EmailConfirmation from "../../Views/Unkown/Confirm";
 
 function Unknown({ match }) {
   useEffect(() => (window.onscroll = onScroll), []);
@@ -41,9 +42,6 @@ function Unknown({ match }) {
       }
     } catch (err) {}
   };
-  let history = useHistory();
-  // <Redirect to="/" />
-  console.log(`${match.url}/log-in`);
   return (
     <div>
       <ScrollTop />
@@ -63,7 +61,16 @@ function Unknown({ match }) {
             exact
             component={ForgetPassword}
           />
-
+          <Route
+            path={`${match.url}forget-password`}
+            exact
+            component={ForgetPassword}
+          />
+          <Route
+            path={`${match.url}confirm`}
+            exact
+            component={EmailConfirmation}
+          />
           <Route path={`${match.url}list`} component={ProductList} />
           <Route
             path={`${match.url}reset-password`}
@@ -76,6 +83,7 @@ function Unknown({ match }) {
             path={`${match.url}create-account`}
             component={CreateAccount}
           />
+
           <Route
             path={`${match.url}not-found`}
             component={() => <h1>Not Found</h1>}

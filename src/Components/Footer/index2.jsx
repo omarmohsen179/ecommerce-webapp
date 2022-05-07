@@ -20,17 +20,17 @@ function Footer2() {
   ]);
 
   const [values, setvalues] = useState({});
-  const handleChange = useCallback((e) => {
-    console.log({ [e.target.name]: e.target.value });
-    setvalues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }, []);
+  const handleChange = useCallback(
+    (e) => setvalues((prev) => ({ ...prev, [e.target.name]: e.target.value })),
+    []
+  );
   return (
     <div
       style={{ backgroundImage: "url(" + back + ")", zIndex: "1", color: text }}
       className="footer-container worksBlock"
     >
       <div style={{ textAlign: "center", color: "white" }}>
-        <h1 style={{ textAlign: "center", color: "white" }}>
+        <h1 style={{ textAlign: "center", color: "white", marginTop: "4%" }}>
           BE THE FIRST TO KNOW
         </h1>
         <p>Subscribe to our newsletter and get 10% off your first purchase</p>

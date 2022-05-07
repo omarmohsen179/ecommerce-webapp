@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { CONFIRM } from "./EmailConfirmation.APi";
+import { CONFIRM } from "./Api";
 
 import { useTranslation } from "react-i18next";
 
@@ -13,7 +13,7 @@ function EmailConfirmation(props) {
   let submit = useCallback(
     async (e) => {
       await CONFIRM(e)
-        .then((res) => {
+        .then(() => {
           settext(t("YOUR EMAIL BEEN CONFIRMED SUCCESSFULLY"));
         })
         .catch(() => {
@@ -25,10 +25,10 @@ function EmailConfirmation(props) {
 
   useEffect(() => {
     let value = queryString.parse(props.location.search);
+    console.log(value);
     if (value.token && value.username) {
       submit({
         token: value.token,
-        username: value.username,
       });
     }
   }, [props.location.search, submit]);

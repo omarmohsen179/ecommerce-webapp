@@ -4,83 +4,101 @@ import SquaredInput from "../../../Components/SquaredInput";
 import { useHistory } from "react-router-dom";
 import LoginTemplate from "../../../Components/LoginTemplate";
 import { useRef } from "react";
-import { useEffect } from "react";
 import { CHECK_EMAIL, CHECK_USERNAME, CREATE_ACCOUNT } from "./Api";
+import {
+  CheckInputs,
+  validateEmail,
+} from "../../../Service/SharedApi/SharedFunctions";
+import ButtonComponent from "../../../Components/ButtonComponent";
+import { text } from "../../../styles/constant";
 function CreateAccount() {
   const { t, i18n } = useTranslation();
   const defualtvalues = useRef({
+    FullName: "",
     CPassword: "",
     Username: "",
     Password: "",
     Email: "",
   });
+  const [loading, setloading] = useState(false);
   const [error, seterror] = useState({});
-  const [text, settext] = useState("");
+  const [Text, settext] = useState("");
   const [values, setvalues] = useState(defualtvalues.current);
   let history = useHistory();
   const handleChange = useCallback((e) => {
     setvalues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }, []);
 
-  const CheckEmail = useCallback(
-    async (e) => {
-      if (!validateEmail(values.email)) {
-        seterror({ ...error, Email: t("mail is not valid") });
-        return;
-      }
-      await CHECK_EMAIL(values)
-        .then((res) => {
-          seterror({ ...error, Email: "" });
-        })
-        .catch(() => {
-          seterror({ ...error, Email: t("e-mail has been taken") });
-        });
-    },
-    [values, error, t]
-  );
-  function validateEmail(email) {
-    const re =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
-  const CheckUsername = useCallback(
-    async (e) => {
-      await CHECK_USERNAME(values)
-        .then((res) => {
-          seterror({ ...error, Username: "" });
-        })
-        .catch(() => {
-          seterror({
-            ...error,
-            Username: values.username.includes(" ")
-              ? t("Invalid username")
-              : t("username has been taken"),
-          });
-        });
-    },
-    [values, error, t]
-  );
+  const CheckEmail = useCallback(async (e) => {
+    if (!validateEmail(e.target.value)) {
+      seterror((prev) => ({ ...prev, Email: "e-mail is not valid" }));
+      return;
+    }
+    await CHECK_EMAIL(e.target.value)
+      .then((res) => {
+        seterror((prev) => ({ ...prev, Email: "e-mail has been taken" }));
+      })
+      .catch(() => {
+        seterror({ ...error, Email: "" });
+      });
+  }, []);
+
+  const CheckUsername = useCallback(async (e) => {
+    if (e.target.value.includes(" ")) {
+      seterror((prev) => ({
+        ...prev,
+        Username: "Invalid username",
+      }));
+      return;
+    }
+    await CHECK_USERNAME(e.target.value)
+      .then((res) => {
+        seterror((prev) => ({
+          ...prev,
+          Username: "username has been taken",
+        }));
+      })
+      .catch(() =>
+        seterror((prev) => ({
+          ...prev,
+          Username: "",
+        }))
+      );
+  }, []);
 
   const submit = async (e) => {
     e.preventDefault();
-    var cc = {};
-    for (const property in values)
-      if (!values[property] && !error) cc[property] = "required input";
+
     if (error.Username || error.Email || error.CPassword) {
       return;
     }
-    seterror(cc);
+    seterror(CheckInputs(values, error));
+    if (Object.keys(CheckInputs(values, error)).length > 0) {
+      return;
+    }
+    setloading(true);
     await CREATE_ACCOUNT(values)
       .then((res) => {
-        settext(t("YOUR EMAIL BEEN CONFIRMED SUCCESSFULLY"));
+        settext(res);
+        setloading(false);
       })
-      .catch(() => {});
+      .catch(() => setloading(false));
   };
 
   return (
     <LoginTemplate>
-      {text ? (
-        <h1>{text}</h1>
+      {Text ? (
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "30px",
+            paddingTop: "20px",
+            paddingBottom: "20px",
+            color: text,
+          }}
+        >
+          {t(Text)}
+        </div>
       ) : (
         <>
           <form onSubmit={submit}>
@@ -96,15 +114,16 @@ function CreateAccount() {
             </div>
 
             <SquaredInput
-              label={t("Full Name")}
+              label={"Full Name"}
               handleChange={handleChange}
               name="FullName"
               value={values["FullName"]}
               required
               errorMessage={error.FullName}
+              onBlur={CheckInputs(values, error)}
             />
             <SquaredInput
-              label={t("Username")}
+              label={"Username"}
               handleChange={handleChange}
               name="Username"
               required
@@ -113,7 +132,7 @@ function CreateAccount() {
               onBlur={CheckUsername}
             />
             <SquaredInput
-              label={t("Email")}
+              label={"E-mail"}
               handleChange={handleChange}
               name="Email"
               required
@@ -122,33 +141,39 @@ function CreateAccount() {
               onBlur={CheckEmail}
             />
             <SquaredInput
-              label={t("Password")}
+              label={"Password"}
               handleChange={handleChange}
               name="Password"
               value={values["Password"]}
               errorMessage={error.Password}
+              onBlur={CheckInputs(values, error)}
             />
             <SquaredInput
-              label={t("Confirm Password")}
+              label={"Confirm Password"}
               handleChange={handleChange}
               name="CPassword"
               value={values["CPassword"]}
               errorMessage={error.CPassword}
-              onBlur={() =>
-                values.password !== values.CPassword
-                  ? seterror((prev) => ({
-                      ...prev,
-                      CPassword: "required input",
-                    }))
-                  : seterror((prev) => ({ ...prev, CPassword: "" }))
+              onBlur={(e) =>
+                seterror((prev) => ({
+                  ...prev,
+                  CPassword:
+                    values.Password === e.target.value
+                      ? ""
+                      : "does not match the password",
+                }))
               }
             />
-            <button
-              type="submit"
-              className="btn btn-primary log-in-bootstrap-button"
-            >
-              {t("Create")}
-            </button>
+            <ButtonComponent
+              disable={
+                Object.keys(error)
+                  .map((key, index) => error[key] !== "")
+                  .filter((e) => e).length > 0 || !values
+              }
+              title="Create"
+              type={"submit"}
+              loading={loading}
+            />
           </form>
           <div
             style={{

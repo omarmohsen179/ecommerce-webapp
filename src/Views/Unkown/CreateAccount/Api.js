@@ -3,19 +3,19 @@ import REQUEST from "../../../Service/Request";
 export const CREATE_ACCOUNT = async (e) => {
   return await REQUEST({
     method: "post",
-    url: "/create-account",
+    url: "auth/create-account",
     data: e,
   });
 };
 export const CHECK_EMAIL = async (e) => {
   return await REQUEST({
     method: "post",
-    url: "/check-email/" + e,
+    url: "auth/check-email/" + e,
   });
 };
 export const CHECK_USERNAME = async (e) => {
   return await REQUEST({
     method: "post",
-    url: "/check-username/" + e,
+    url: "auth/check-username/" + e,
   });
 };
