@@ -2,7 +2,6 @@ import React from "react";
 import ReactQuill from "react-quill";
 import { Card, CardBody, Form, FormInput } from "shards-react";
 
-import "react-quill/dist/quill.snow.css";
 import "../../../styles/quill.css";
 
 const Editor = () => (

@@ -1,7 +1,6 @@
 import { Route, Switch } from "react-router-dom";
-
+import React from "react";
 import routes from "./routes";
-import withTracker from "./withTracker";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
