@@ -41,7 +41,7 @@
   "Password": "كلمة السر",
   "SIGN IN": "تسجيل الدخول",
   "Forgot password?": "هل نسيت كلمة السر؟",
-  "CREATE AN ACCOUNT": "انشئ حساب",
+  "Create an account": "انشئ حساب",
   "Confirm Password": "تأكيد كلمة المرور",
   "Password Does not match": "كلمت السر ليست مطبقه",
   "Account Created successfully. now you must confirm your e-mail": "تم إنشاء الحساب بنجاح. الآن يجب عليك تأكيد بريدك الإلكتروني",
@@ -178,5 +178,7 @@
   "Create": "انشأ",
   "Create new account": "انشاء حساب جديد",
   "Already have an account": "هل لديك حساب؟",
-  "Required input": "هذا المدخل مطلوب"
+  "Required input": "هذا المدخل مطلوب",
+  "Log in to your account": "سجيل الدخول إلى حسابك",
+  "Username or E-mail": "اسم المستخدم أو البريد الالكتروني"
 }

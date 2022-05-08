@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import ButtonComponent from "../../../Components/ButtonComponent";
 import LoginTemplate from "../../../Components/LoginTemplate";
 import SquaredInput from "../../../Components/SquaredInput";
+import { CheckInputs } from "../../../Service/SharedApi/SharedFunctions";
 function Login() {
   const { t, i18n } = useTranslation();
+  const defualtvalues = useRef({
+    Password: "",
+    UsernameOrEmail: "",
+  });
+  const [loading, setloading] = useState(false);
+  const [values, setvalues] = useState(defualtvalues.current);
+  const [error, seterror] = useState({});
   let history = useHistory();
+  const handleChange = useCallback((e) => {
+    setvalues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }, []);
+  const submit = async (e) => {
+    e.preventDefault();
+    seterror(CheckInputs(values, error));
+    if (Object.keys(CheckInputs(values, error)).length > 0) {
+      return;
+    }
+    setloading(true);
+  };
   return (
     <LoginTemplate>
       <div>
-        <div>
+        <form onSubmit={submit}>
           <div
             style={{
               textAlign: "center",
@@ -20,15 +40,36 @@ function Login() {
           >
             {t("Log in to your account")}
           </div>
-          <SquaredInput label={t("Username or Email")} />
-          <SquaredInput label={t("Password")} type={"password"} />
-          <button
-            type="button"
-            className="btn btn-primary log-in-bootstrap-button"
-          >
-            {t("Log in")}
-          </button>
-        </div>
+
+          <SquaredInput
+            label={"Username or E-mail"}
+            handleChange={handleChange}
+            name="UsernameOrEmail"
+            value={values["UsernameOrEmail"]}
+            required
+            errorMessage={error.UsernameOrEmail}
+            onBlur={() => seterror(CheckInputs(values, error))}
+          />
+          <SquaredInput
+            label={"Password"}
+            handleChange={handleChange}
+            name="Username"
+            required
+            value={values["Username"]}
+            errorMessage={error["Username"]}
+            onBlur={() => seterror(CheckInputs(values, error))}
+          />
+          <ButtonComponent
+            disable={
+              Object.keys(error)
+                .map((key, index) => error[key] !== "")
+                .filter((e) => e).length > 0 || !values
+            }
+            title="Log In"
+            type={"submit"}
+            loading={loading}
+          />
+        </form>
         <div
           style={{
             display: "flex",
@@ -37,13 +78,13 @@ function Login() {
           }}
         >
           <div onClick={() => history.push("/forget-password")}>
-            <p className="underline-text-hover"> {t("Forgot Password")}</p>
+            <p className="underline-text-hover"> {t("Forgot password?")}</p>
           </div>
           <div
             onClick={() => history.push("/create-account")}
             style={{ display: "flex", justifyContent: "end" }}
           >
-            <p className="underline-text-hover">{t("Create Account")}</p>
+            <p className="underline-text-hover">{t("Create an account")}</p>
           </div>
         </div>
       </div>

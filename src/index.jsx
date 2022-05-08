@@ -1,15 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import { Provider } from "react-redux";
-import reportWebVitals from "./reportWebVitals";
-import "antd/dist/antd.css";
-import configureStore from "./Store/ConfigureStore";
 import "animate.css";
-import { LanguageProvider } from "./Service/LanguageContext";
+import "antd/dist/antd.css";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { createRoot } from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { LanguageProvider } from "./Service/LanguageContext";
+import configureStore from "./Store/ConfigureStore";
 
 const container = document.getElementById("root");
 const root = createRoot(container);

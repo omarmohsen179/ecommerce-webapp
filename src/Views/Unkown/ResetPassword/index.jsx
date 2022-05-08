@@ -15,20 +15,19 @@ function ResetPassword({ props }) {
   const [error, seterror] = useState({});
   const [Text, settext] = useState("");
   const [loading, setloading] = useState(false);
-  const [values, setvalues] = useState({});
+  const [values, setvalues] = useState({ CPassword: "", Password: "" });
   const { t, i18n } = useTranslation();
   let history = useHistory();
   const handleChange = useCallback(
     (e) => setvalues((prev) => ({ ...prev, [e.target.name]: e.target.value })),
     []
   );
-  let query = useQuery();
   useEffect(() => {
     let value = queryString.parse(props.location.search);
-    if (!value) {
+    if (!value.token) {
       history.push("/");
     }
-    setvalues({ ...values, value });
+    setvalues({ ...values, token: value.token });
   }, []);
   const submit = async (e) => {
     e.preventDefault();
@@ -36,10 +35,11 @@ function ResetPassword({ props }) {
     if (Object.keys(CheckInputs(values, error)).length > 0) {
       return;
     }
-
+    setloading(true);
     await RESET_PASSWORD(values)
       .then((res) => {
         settext("your e-mail been confirmed successfully");
+        setloading(false);
       })
       .catch(() => {});
   };

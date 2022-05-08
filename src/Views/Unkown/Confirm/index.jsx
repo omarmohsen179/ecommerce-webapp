@@ -12,7 +12,7 @@ function EmailConfirmation(props) {
   let [text, settext] = useState("");
   let submit = useCallback(
     async (e) => {
-      await CONFIRM(e)
+      await CONFIRM({ value: e })
         .then(() => {
           settext(t("YOUR EMAIL BEEN CONFIRMED SUCCESSFULLY"));
         })
@@ -26,10 +26,8 @@ function EmailConfirmation(props) {
   useEffect(() => {
     let value = queryString.parse(props.location.search);
     console.log(value);
-    if (value.token && value.username) {
-      submit({
-        token: value.token,
-      });
+    if (value.token) {
+      submit(value.token);
     }
   }, [props.location.search, submit]);
 
