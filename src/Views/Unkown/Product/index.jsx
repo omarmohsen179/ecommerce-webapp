@@ -1,9 +1,12 @@
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import ButtonComponent from "../../../Components/ButtonComponent";
 import Image from "../../../Components/Image";
+import IncrementInput from "../../../Components/IncrementInput";
 import SelectInput from "../../../Components/SelectInput";
 import TitleHeader from "../../../Components/TitleHeader";
+import { theme } from "../../../styles/constant";
 
 import "./index.css";
 function Product() {
@@ -39,38 +42,52 @@ function Product() {
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg",
     },
     { images: "https://s.fotorama.io/1.jpg" },
+    {
+      images:
+        "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
+    },
+    {
+      images:
+        "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg",
+    },
+    { images: "https://s.fotorama.io/1.jpg" },
+    {
+      images:
+        "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
+    },
+    {
+      images:
+        "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg",
+    },
+    { images: "https://s.fotorama.io/1.jpg" },
   ];
   return (
-    <div className="container">
+    <div
+      className="container"
+      style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}
+    >
       <TitleHeader title="Variable Product" />
       <div className="row">
-        <div className="col-lg-6 col-md-8 col-sm-12">
+        <div className="col-lg-6 col-md-12 col-sm-12">
           <div className="zoom-thumb row">
-            <ul
-              className="piclist col-2"
-              style={{
-                display: "list-item",
-                overflowY: "scroll",
-                overflowX: "hidden",
-                maxHeight: "350px",
-                padding: 0,
-                margin: 0,
-              }}
-            >
+            <div className="piclist col-lg-2  col-md-12  col-sm-12 images-list">
               {images.map((ele, index) => (
                 <li
-                  className={active_image === index ? "active-image" : " image"}
+                  className={
+                    active_image === index ? "active-image " : " image "
+                  }
                   onClick={() => set_active_image(index)}
                 >
-                  <Image src={ele.images} alt="" />
+                  <Image
+                    className={"list-image-item"}
+                    src={ele.images}
+                    alt=""
+                  />
                 </li>
               ))}
-            </ul>
+            </div>
 
-            <div
-              className=" col"
-              style={{ display: "flex", justifyContent: "center" }}
-            >
+            <div className="display-selected-image col-lg-10  col-md-12  col-sm-12  ">
               <img
                 className={"my_img "}
                 src={
@@ -81,7 +98,7 @@ function Product() {
             </div>
           </div>
         </div>
-        <div className="col-lg-6 col-md-8 col-sm-12">
+        <div className="col-lg-6 col-md-12 col-sm-12">
           <div className="product-dtl">
             <div className="product-info">
               {/*<div className="product-name">Variable Product</div>*/}
@@ -164,27 +181,21 @@ function Product() {
                     { Id: 3, Name: "Yellow" },
                   ]}
                   handleChang={handleChange}
-                  name="size"
-                  value={values.size}
+                  name="color"
+                  value={values.color}
                 />
               </div>
             </div>
+            <label for="size">Quantity</label>
             <div className="product-count">
-              <label for="size">Quantity</label>
-              <form action="#" className="display-flex">
-                <div className="qtyminus">-</div>
-                <input
-                  type="text"
-                  name="Quantity"
-                  value={values.Quantity}
-                  onChange={handleChange}
-                  className="qty"
-                />
-                <div className="qtyplus">+</div>
-              </form>
-              <a href="#" className="round-black-btn">
-                Add to Cart
-              </a>
+              <IncrementInput
+                value={values.Quantity}
+                setvalues={(e) => handleChange({ value: e, name: "Quantity" })}
+                name={"Quantity"}
+              />
+              <div className="round-black-btn">
+                <ButtonComponent title={"Add to Cart"} />
+              </div>
             </div>
           </div>
         </div>
@@ -297,17 +308,13 @@ function Product() {
                   </div>
                 </div>
               </div>
-              <button className="round-black-btn">Submit Review</button>
+
+              <div className="round-black-btn">
+                <ButtonComponent title={"Submit Review"} />
+              </div>
             </form>
           </div>
         </div>
-      </div>
-
-      <div>
-        Get free icon packs for your next project at{" "}
-        <a href="http://iiicons.in/" target="_blank">
-          www.iiicons.in
-        </a>
       </div>
     </div>
   );

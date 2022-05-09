@@ -8,9 +8,10 @@ import { useCallback } from "react";
 import { validateEmail } from "../../../Service/SharedApi/SharedFunctions";
 import { CHECK_EMAIL } from "../CreateAccount/Api";
 import ButtonComponent from "../../../Components/ButtonComponent";
+import { text } from "../../../styles/constant";
 function ForgetPassword() {
   const { t, i18n } = useTranslation();
-  let [text, settext] = useState("");
+  let [Text, setText] = useState("");
   const [error, seterror] = useState("");
   const [loading, setloading] = useState(false);
   const [values, setvalues] = useState("");
@@ -21,10 +22,10 @@ function ForgetPassword() {
         values,
       })
         .then((res) => {
-          settext(res);
+          setText(res);
         })
         .catch(() => {
-          settext("error in info try again");
+          setText("error in info try again");
         });
     },
     [t]

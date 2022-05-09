@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
 import Image from "../Image";
 import TitleHeader from "../TitleHeader";
 import "./index.css";
@@ -85,6 +86,7 @@ function CategoryList({ data = [], style, title }) {
         "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/prepaid-cards/logos/skype-logo.jpg",
     },
   ];
+  let history = useHistory();
   const { t, i18n } = useTranslation();
   return (
     <div
@@ -97,18 +99,15 @@ function CategoryList({ data = [], style, title }) {
         style={{ display: "flex", justifyContent: "center" }}
       >
         {datax.map((ele, index) => (
-          <div key={index} style={{ width: "120px" }}>
-            <div
-              className="border-item"
-              style={{
-                width: "115px",
-                height: "80px",
-                backgroundColor: "white",
-                padding: "5px",
-              }}
-            >
-              <Image src={ele.image} />
-            </div>
+          <div
+            onClick={() => {
+              history.push("/list?q=None&c=categoryName");
+            }}
+            style={{ width: "120px" }}
+            key={index}
+            className="border-item"
+          >
+            <Image src={ele.image} />
           </div>
         ))}
       </div>

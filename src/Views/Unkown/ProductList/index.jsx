@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import "./index.css";
@@ -14,14 +14,36 @@ function ProductList() {
   let history = useHistory();
   let query = useQuery();
   const [queryString, setqueryString] = useState({});
+  const [sidestate, setsidestate] = useState(false);
   const [currentItems, setCurrentItems] = useState(null);
   useEffect(() => {
     const querydata = {
       search: query.get("q"),
       category: query.get("c") ? query.get("c") : "",
     };
+    togglefilter();
     setqueryString(querydata);
-  }, []);
+  }, [query]);
+  const [windowDimenion, detectHW] = useState({
+    winWidth: window.innerWidth,
+    winHeight: window.innerHeight,
+  });
+
+  const detectSize = () => {
+    if (sidestate) togglefilter();
+    detectHW({
+      winWidth: window.innerWidth,
+      winHeight: window.innerHeight,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", detectSize);
+
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [windowDimenion]);
   const data = [
     {
       image:
@@ -61,46 +83,61 @@ function ProductList() {
       price: 1234,
     },
   ];
-
+  const togglefilter = useCallback(() => {
+    console.log(windowDimenion.winWidth);
+    document.getElementById("products-list").style.width =
+      windowDimenion.winWidth > 1200 && !sidestate ? "75%" : "100%";
+    document.getElementById("sidemenux").style.width = !sidestate
+      ? windowDimenion.winWidth > 1200
+        ? "25%"
+        : "80%"
+      : "0";
+    document.getElementById("sidemenux").style.height = !sidestate
+      ? "100%"
+      : "0";
+    setsidestate(!sidestate);
+  }, [sidestate, windowDimenion.winWidth]);
   return (
     <div
-      className="container product-list"
+      className="max-width product-list"
       style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}
     >
       <TitleHeader
         title={queryString["category"]}
-        details={"Item"}
-        shaded={"Trendy"}
+        details={queryString["search"]}
+        shaded={"resualt of "}
       />
-      <div
-        className="bg-white rounded d-flex align-items-center justify-content-between"
-        id="header"
-      >
-        <a
+
+      <div className=" align-items-center justify-content-between" id="header">
+        <div
           className="text-color-hover"
-          data-bs-toggle="collapse"
-          href="#filterbar"
-          role="button"
-          aria-expanded="false"
-          aria-controls="filterbar"
-          id="filter-btn"
           style={{ color: "black" }}
+          onClick={togglefilter}
         >
           <span className="fas fa-filter" id="filter-angle"></span>
           <span style={{ padding: 2, fontWeight: "600" }} id="filter-angle">
             Filter
           </span>
-        </a>
+        </div>
       </div>
       <div>
-        <div>
+        <div style={{ display: "flex" }}>
           <SideBar />
-        </div>
 
-        <div id="products">
-          <div className="row mx-0">
+          <div
+            id="products-list"
+            className="row"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%  ",
+            }}
+          >
             {data.map((ele) => (
-              <div className="col-lg-4 col-md-6 col-sm-12 pt-md-4 pt-3">
+              <div
+                className="col-lg-3 col-md-6 col-sm-12 pt-md-4 pt-3"
+                style={{ minWidth: "300px" }}
+              >
                 <ProductCard ele={ele} />
               </div>
             ))}
@@ -109,7 +146,9 @@ function ProductList() {
         <div
           style={{
             display: "flex",
+            minWidth: "100%",
             justifyContent: "center",
+            margin: 0,
             marginTop: "50px",
           }}
         >

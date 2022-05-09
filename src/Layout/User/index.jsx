@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import routes from "./routes";
 import withTracker from "./withTracker";
@@ -34,6 +34,7 @@ export default function User({ match }) {
               />
             );
           })}
+          <Redirect to={"/dashboard/blog-overview"} />
         </Switch>
       </DefaultLayout>
     </div>

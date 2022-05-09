@@ -2,12 +2,12 @@
   color: orange;
 }
 .post-card:hover .post-card-option {
-    width: 100%;
+  width: 100%;
 }
 .post-card:hover {
   box-shadow: 2px 2px 15px #b3b3b3 !important;
   transform: scale(1.02);
-} 
+}
 .product-icons {
   font-size: 15px;
   color: #666;
@@ -21,7 +21,7 @@
 
   width: 0;
   overflow: hidden;
-    justify-content: center ;
+  justify-content: center;
   border-radius: 5px;
   transition: all 0.5s ease;
 }
@@ -34,7 +34,6 @@
   z-index: 1;
   height: 100% !important;
   min-width: 300px;
-  margin: 10px;
 }
 .price {
   font-size: 16px;

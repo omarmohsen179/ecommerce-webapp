@@ -78,7 +78,7 @@ function HorizontalSlider() {
       >
         {data.map((ele, index) => (
           <div key={index}>
-            <ProductCard ele={ele} />
+            <ProductCard style={{ margin: "35px 0" }} ele={ele} />
           </div>
         ))}
       </OwlCarousel>

@@ -1,9 +1,7 @@
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { Route, Switch } from "react-router-dom";
-import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
-import "../node_modules/popper.js/dist/popper";
+
 import "./App.css";
 import Unknown from "./Layout/Unknown";
 

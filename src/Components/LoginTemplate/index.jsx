@@ -15,9 +15,7 @@ function LoginTemplate({ children }) {
         className="login-form-window"
         style={{ display: "flex", justifyContent: "center" }}
       >
-        <div>
-          <div>{children}</div>
-        </div>
+        <div>{children}</div>
       </div>
     </div>
   );

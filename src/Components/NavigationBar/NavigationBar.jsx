@@ -15,8 +15,14 @@ function NavigationBar() {
   let pages = useRef([
     {
       icon: "fas fa-house-chimney",
-      name: "Home Page",
+      name: "Home",
       route: "/",
+    },
+
+    {
+      icon: "fas fa-newspaper",
+      name: "Blogs ",
+      route: "/blogs",
     },
     {
       icon: "fas fa-code-branch",
@@ -33,12 +39,6 @@ function NavigationBar() {
         />
       ),
     },
-    {
-      icon: "fas fa-newspaper",
-      name: "Blogs ",
-      route: "/blogs",
-    },
-
     { icon: "fas fa-address-card", name: "About", route: "/gallery" },
   ]);
   const [screenSize, getDimension] = useState({
@@ -173,9 +173,13 @@ function NavigationBar() {
               ></input>
               <a
                 onClick={() => {
-                  history.push("/list?q=" + values.searchinput + "&c=x");
+                  history.push("/list?q=" + values.searchinput + "&c=Category");
                 }}
-                style={{ margin: "auto 15px", cursor: "pointer" }}
+                style={{
+                  margin: "auto 15px",
+                  cursor: "pointer",
+                  backgroundColor: "transparent",
+                }}
               >
                 <i className="fa-solid fa-magnifying-glass"></i>
               </a>
@@ -244,20 +248,25 @@ function NavigationBar() {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              history.push("/list?q=" + values.searchinput + "&c=x");
+              history.push("/list?q=" + values.searchinput + "&c=Cateories");
             }}
             className="search-input hide-mobile"
           >
             <input
               className="search-input-element"
-              placeholder="Search here..."
+              placeholder={t("Search here...")}
               name="searchinput"
               onChange={handleChange}
               value={values.searchinput}
             ></input>
             <button
               type="submit"
-              style={{ margin: "auto 15px", cursor: "pointer", border: 0 }}
+              style={{
+                backgroundColor: "transparent",
+                margin: "auto 15px",
+                cursor: "pointer",
+                border: 0,
+              }}
             >
               <i className="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -277,7 +286,7 @@ function NavigationBar() {
               className="text-remove-style  text-color-hover"
               style={{ padding: "0 5px" }}
             >
-              LOGIN
+              {t("Log In")}
             </div>
             |
           </b>
@@ -289,8 +298,11 @@ function NavigationBar() {
               alignSelf: "center",
             }}
           >
-            <a href="#" className="notification">
-              <i className=" padding-icons-class  text-color-hover fa-solid fa-cart-arrow-down"></i>
+            <a className="notification">
+              <i
+                onClick={() => history.push("/cart")}
+                className=" padding-icons-class  text-color-hover fa-solid fa-cart-arrow-down"
+              ></i>
               <span className="badge" style={{ backgroundColor: theme }}>
                 3
               </span>

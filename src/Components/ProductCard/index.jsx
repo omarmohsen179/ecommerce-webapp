@@ -2,10 +2,14 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Image from "../Image";
 import "./index.css";
-function ProductCard({ ele }) {
+function ProductCard({ ele, style = {} }) {
   let history = useHistory();
   return (
-    <div onClick={() => history.push("/item?I=1")} className="post-card card">
+    <div
+      onClick={() => history.push("/item?I=1")}
+      style={style}
+      className="post-card card"
+    >
       <div
         style={{
           height: "300px",

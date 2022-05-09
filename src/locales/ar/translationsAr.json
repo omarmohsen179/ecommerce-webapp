@@ -159,7 +159,7 @@
   "Is not Active": "غير نشط",
   "Our Journey": "تاريخنا",
   "System Options": "خصائص النظام",
-  "Add to Cart": "إشتراك",
+  "Add to Cart": "أضف إلى السلة",
   "Subscribe": "إشتراك",
   "Bronze": "برونزي",
   "Silver": "فضي",
@@ -172,7 +172,7 @@
   "About the company ": "عن الشركة",
   "Main": "الرأيسي",
 
-  "العربية": "Enlish",
+  "العربية": "English",
   "Full Name": "الاسم ",
   "Reset Password": "إعادة تعيين كلمة المرور",
   "Create": "انشأ",
@@ -180,5 +180,7 @@
   "Already have an account": "هل لديك حساب؟",
   "Required input": "هذا المدخل مطلوب",
   "Log in to your account": "سجيل الدخول إلى حسابك",
-  "Username or E-mail": "اسم المستخدم أو البريد الالكتروني"
+  "Username or E-mail": "اسم المستخدم أو البريد الالكتروني",
+  "Search here...": "ابحث هنا...",
+  "Submit Review": "إرسال المراجعة"
 }

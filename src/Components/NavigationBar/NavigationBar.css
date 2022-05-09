@@ -112,6 +112,7 @@
   outline: none;
   display: flex;
   max-width: 411px;
+  background-color: white;
 }
 .block-search .form.minisearch .control input {
   display: inline-block;
