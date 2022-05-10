@@ -1,16 +1,26 @@
 import React, { useCallback, useRef, useState } from "react";
 import "./Footer2.css";
 import "./Footer.css";
-import back from "../../Assets/footer.jpg";
+import back from "../../Assets/Homebackground.webp";
 import { text } from "../../styles/constant";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 function Footer2() {
+  const { t, i18n } = useTranslation();
   let pages = useRef([
-    { name: "Home", route: "/" },
-    { name: "About us", route: "/about-us" },
-    { name: "Listinings", route: "/listinings" },
-    { name: "Our Team", route: "/our-team" },
-    { name: "Gallery", route: "/gallery" },
-    { name: "Contact Us", route: "/contact-us" },
+    {
+      icon: "fas fa-house-chimney",
+      name: "Home",
+      route: "/",
+    },
+
+    {
+      icon: "fas fa-newspaper",
+      name: "Blogs ",
+      route: "/blogs",
+    },
+
+    { icon: "fas fa-address-card", name: "About", route: "/gallery" },
   ]);
   let social = useRef([
     { type: "facebook" },
@@ -26,7 +36,14 @@ function Footer2() {
   );
   return (
     <div
-      style={{ backgroundImage: "url(" + back + ")", zIndex: "1", color: text }}
+      style={{
+        backgroundImage:
+          "url(" +
+          "https://183152-537558-raikfcquaxqncofqfm.stackpathdns.com/pub/media/wysiwyg/Banners-Home/_-_-1.png" +
+          ")",
+        zIndex: "1",
+        color: text,
+      }}
       className="footer-container worksBlock"
     >
       <div style={{ textAlign: "center", color: "white" }}>
@@ -125,67 +142,18 @@ function Footer2() {
                 </li>
               </ul>
             </div>
-
-            <div className=" col-sm-4 col-md  col-12 col">
-              <h5 className="headin5_amrc col_white_amrc pt2">Follow us</h5>
-
-              <ul className="footer_ul2_amrc">
-                <li>
-                  <a href="#">
-                    <i className="fab fa-twitter fleft padding-right"></i>{" "}
-                  </a>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing...
-                    <a href="#">https://www.lipsum.com/</a>
-                  </p>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fab fa-twitter fleft padding-right"></i>{" "}
-                  </a>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing...
-                    <a href="#">https://www.lipsum.com/</a>
-                  </p>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fab fa-twitter fleft padding-right"></i>{" "}
-                  </a>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing...
-                    <a href="#">https://www.lipsum.com/</a>
-                  </p>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
 
         <div className="container">
           <ul className="foote_bottom_ul_amrc">
-            <li>
-              <a href="http://webenlance.com">Home</a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">About</a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">Services</a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">Pricing</a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">Blog</a>
-            </li>
-            <li>
-              <a href="http://webenlance.com">Contact</a>
-            </li>
+            {pages.current.map((ele) => (
+              <li>
+                <Link to={ele.route}>{t(ele.name)}</Link>
+              </li>
+            ))}
           </ul>
-          <p className="text-center">
-            Copyright @2017 | Designed With by <a href="#">Your Company Name</a>
-          </p>
+          <p className="text-center">Copyright @2017 </p>
 
           <ul className="social_footer_ul">
             <li>

@@ -1387,12 +1387,6 @@ select.form-control-lg:not([size]):not([multiple]),
   transition: height 350ms ease-in-out;
 }
 
-i.material-icons {
-  font-size: inherit;
-  position: relative;
-  top: 2px;
-}
-
 .dropdown-menu {
   z-index: 1000;
   min-width: 10rem;
