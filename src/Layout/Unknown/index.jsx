@@ -7,15 +7,18 @@ import Home from "../../Views/Unkown/Home";
 import Footer from "../../Components/Footer/index2";
 import LangueNavBar from "../../Components/LangueNavBar";
 import ScrollTop from "../../Components/ScrollTop";
-import CreateAccount from "../../Views/Unkown/CreateAccount";
-import ForgetPassword from "../../Views/Unkown/ForgetPassword";
-import Login from "../../Views/Unkown/Login";
-import ResetPassword from "../../Views/Unkown/ResetPassword";
+
+import Login from "../../Views/Auth/Login";
+
 import ProductList from "../../Views/Unkown/ProductList";
 import Product from "../../Views/Unkown/Product";
 import Blogs from "../../Views/Unkown/Blogs";
-import EmailConfirmation from "../../Views/Unkown/Confirm";
+
 import Cart from "../../Views/Unkown/Cart";
+import ForgetPassword from "../../Views/Auth/ForgetPassword";
+import CreateAccount from "../../Views/Auth/CreateAccount";
+import ResetPassword from "../../Views/Auth/ResetPassword";
+import EmailConfirmation from "../../Views/Auth/Confirm";
 
 function Unknown({ match }) {
   useEffect(() => (window.onscroll = onScroll), []);

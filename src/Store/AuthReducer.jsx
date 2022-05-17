@@ -10,20 +10,20 @@ export const userLogin = createAsyncThunk(
   "auth/userLogin",
   async (arg, { dispatch, getState }) => {
     return axios({
-      url: `${ApiBaseUrl}/api/User/login`,
+      url: `${ApiBaseUrl}api/auth/login`,
       method: "POST",
       data: arg,
     })
       .then(({ data }) => {
-        alert("Logged In Sucessfully");
+        alert("Logged In Successfully");
         StoreUserData(data);
         return { ...data };
       })
       .catch((error) => {
         const err = error;
         alert(
-          err?.response?.data?.message
-            ? err?.response?.data?.message
+          err?.response?.data?.detail
+            ? err?.response?.data?.detail
             : "Error! Try Again later"
         );
         dispatch(userLogin.rejected(err?.response?.data.massege ?? error));

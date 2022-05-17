@@ -1,4 +1,3 @@
-
 import axios from "axios";
 const TimeOutLocalStorage = async (time, data) => {
   if (data === null) return null;
@@ -15,7 +14,7 @@ export const RetrieveUserData = async () => {
   try {
     const data = await localStorage.getItem("UserInfo");
     axios.defaults.headers.Authorization = `bearer ${JSON.parse(data)?.Token}`;
-    return JSON.parse(data);
+    return data ? JSON.parse(data) : null;
   } catch (error) {
     return null;
   }

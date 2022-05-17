@@ -22,13 +22,13 @@ function NavigationBar() {
 
     {
       icon: "fas fa-newspaper",
-      name: "Blogs ",
+      name: "Blogs",
       route: "/blogs",
     },
     {
       icon: "fas fa-code-branch",
       name: "Categories",
-      route: "/about-us",
+      route: "/#cat",
       dropdown: () => (
         <CategoryList
           style={{
@@ -102,6 +102,7 @@ function NavigationBar() {
     });
   }, [window]);
   const getRoutes = useCallback(() => {
+    console.log(location.pathname);
     return pages.current.filter((ele) => location.pathname === ele.route)[0];
   }, [location.pathname]);
   useEffect(() => {
@@ -336,7 +337,7 @@ function NavigationBar() {
                     to={ele.route}
                   >
                     <i style={{ padding: "0 7px" }} className={ele.icon}></i>
-                    {ele.name}
+                    {t(ele.name)}
                   </Link>
 
                   {ele?.dropdown ? (

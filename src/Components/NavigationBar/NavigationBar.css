@@ -226,12 +226,13 @@
   }
 }
 .nav-up-container {
-  padding: 30px 0px;
+  padding: 30px 0px !important;
 }
 #nav-up-container-id {
   width: 100%;
   margin: auto;
   transition: all 0.5s ease;
+  padding: 8px 0;
 }
 #navbar {
   transition: all 0.5s ease;

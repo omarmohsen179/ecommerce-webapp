@@ -1,71 +1,89 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
-
 // Layout Types
 import DefaultLayout from "./layout";
 
 // Route Views
-import BlogOverview from "../../Views/User/BlogOverview";
-import UserProfileLite from "../../Views/User/UserProfileLite";
-import AddNewPost from "../../Views/User/AddNewPost";
-import Errors from "../../Views/User/Errors";
-import ComponentsOverview from "../../Views/User/ComponentsOverview";
-import BlogPosts from "../../Views/User/BlogPosts";
+import Blogs from "../../Views/User/Blogs";
+import AddBlog from "../../Views/User/AddBlog";
+import Orders from "../../Views/User/Orders";
+import Products from "../../Views/User/Products";
+import Web from "../../Views/User/Web";
+import UsersAdmin from "../../Views/User/UsersAdmin";
+
+import EditProfile from "../../Views/User/EditProfile";
+import Home from "../../Views/User/Home";
 const layoutPath = "/dashboard";
 export default [
   {
-    path: layoutPath + "/",
+    path: layoutPath + "/Home",
+    layout: DefaultLayout,
+    component: Home,
+    key: 0,
+    title: "Home",
+    htmlBefore: '<i class="fas fa-house-user"></i>',
     exact: true,
-    layout: DefaultLayout,
-    htmlBefore: '<i class="material-icons">edit</i>',
     htmlAfter: "",
+  },
+  {
+    path: layoutPath + "/edit-profile",
+    layout: DefaultLayout,
+    component: EditProfile,
+    key: 0,
+    title: "edit profile",
+    htmlBefore: '<i class="fas fa-pen"></i>',
+    htmlAfter: "",
+  },
+  {
+    path: layoutPath + "/blogs",
+    layout: DefaultLayout,
+    component: Blogs,
+    key: 1,
+    title: "blogs",
+    htmlBefore: '<i class="fas fa-blog"></i>',
+    htmlAfter: "",
+  },
+  {
+    path: layoutPath + "/add-blogs",
+    layout: DefaultLayout,
+    component: AddBlog,
+    key: 1,
+    title: "add blog",
+    htmlBefore: '<i class="fas fa-folder-plus"></i>',
+    htmlAfter: "",
+  },
 
-    component: () => <Redirect to={layoutPath + "/blog-overview"} />,
-  },
   {
-    path: layoutPath + "/blog-overview",
+    path: layoutPath + "/orders",
     layout: DefaultLayout,
-    component: BlogOverview,
-    title: "blog overview",
-    htmlBefore: '<i class="material-icons">edit</i>',
-    htmlAfter: "",
-  },
-  {
-    path: layoutPath + "/user-profile-lite",
-    layout: DefaultLayout,
-    title: "Edit profile",
-    component: UserProfileLite,
-    htmlBefore: '<i class="material-icons">edit</i>',
-    htmlAfter: "",
-  },
-  {
-    path: layoutPath + "/add-new-post",
-    layout: DefaultLayout,
-    component: AddNewPost,
-
-    title: "Add New Post",
+    key: 2,
+    component: Orders,
+    title: "order",
     htmlBefore: '<i class="material-icons">note_add</i>',
     htmlAfter: "",
   },
   {
-    path: layoutPath + "/errors",
+    path: layoutPath + "/products",
     layout: DefaultLayout,
-    component: Errors,
-    htmlBefore: '<i className="material-icons">edit</i>',
+    key: 2,
+    component: Products,
+    title: "products",
+    htmlBefore: '<i class="fab fa-elementor"></i>',
     htmlAfter: "",
   },
   {
-    path: layoutPath + "/components-overview",
+    path: layoutPath + "/web",
     layout: DefaultLayout,
-    component: ComponentsOverview,
-    htmlBefore: '<i className="material-icons">edit</i>',
+    key: 3,
+    component: Web,
+    title: "web",
+    htmlBefore: '<i class="material-icons">edit</i>',
     htmlAfter: "",
   },
   {
-    path: layoutPath + "/blog-posts",
+    path: layoutPath + "/users-admin",
     layout: DefaultLayout,
-    title: "Blog Posts",
-    component: BlogPosts,
+    key: 4,
+    component: UsersAdmin,
+    title: "user admin",
     htmlBefore: '<i class="material-icons">vertical_split</i>',
     htmlAfter: "",
   },

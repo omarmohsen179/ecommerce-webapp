@@ -10,7 +10,6 @@ function Home() {
       <AppHero />
       <Post />
       <HorizontalSlider />
-
       <CategoryList
         title="Categories"
         style={{ padding: "10%", margin: "111px 0" }}

@@ -182,5 +182,11 @@
   "Log in to your account": "سجيل الدخول إلى حسابك",
   "Username or E-mail": "اسم المستخدم أو البريد الالكتروني",
   "Search here...": "ابحث هنا...",
-  "Submit Review": "إرسال المراجعة"
+  "Submit Review": "إرسال المراجعة",
+  "your e-mail been confirmed successfully": "تم تأكيد بريدك الإلكتروني بنجاح",
+  "Already Confirmed": "تم تأكيد هذا البريد الإلكتروني بالفعل من قبل",
+  "e-mail been send": "تم إرسال البريد الإلكتروني",
+  "Home": "الرئيسية",
+  "Blogs": "أخبار",
+  "Categories": "الفئات"
 }

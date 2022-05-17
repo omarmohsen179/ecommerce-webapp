@@ -9,34 +9,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { SetSidebarData, side_menu_data } from "../../Store/SidebarReducer";
 import "../../styles/shards-dashboards.1.1.0.css";
 import DefaultLayout from "./layout";
+import { user_selector } from "../../Store/AuthReducer";
 export default function User({ match }) {
   let [Routes, setRoutes] = useState([]);
   let dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(SetSidebarData([routes[1], routes[2], routes[3]]));
-  }, []);
-  let selector = useSelector(side_menu_data);
-  useEffect(() => {
-    setRoutes(selector);
-  }, [selector]);
 
-  return (
+  let selector = useSelector(side_menu_data);
+  let selectoruser = useSelector(user_selector);
+  useEffect(() => setRoutes(selector), [selector]);
+  useEffect(() => {
+    const routes_data = [
+      routes[0],
+      routes[1],
+      ...routes.filter((ele) => selectoruser?.roles?.includes(ele.key)),
+    ];
+    setRoutes(routes_data);
+    dispatch(SetSidebarData(routes_data));
+  }, [selectoruser]);
+  return Routes.length > 0 ? (
     <div>
       <DefaultLayout>
-        <Switch>
-          {Routes?.map((route, index) => {
-            return (
-              <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                component={route.component}
-              />
-            );
-          })}
-          <Redirect to={"/dashboard/blog-overview"} />
-        </Switch>
+        <div style={{ minHeight: "80vh" }}>
+          <Switch>
+            {Routes?.map((route, index) => {
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  exact={route.exact}
+                  component={route.component}
+                />
+              );
+            })}
+            <Redirect to={"/dashboard/Home"} />
+          </Switch>
+        </div>
       </DefaultLayout>
     </div>
-  );
+  ) : null;
 }

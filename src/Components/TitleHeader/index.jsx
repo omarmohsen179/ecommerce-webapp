@@ -1,23 +1,24 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { text } from "../../styles/constant";
-
-function TitleHeader({ title, details, shaded }) {
+import { Col, Row } from "shards-react";
+import PageTitle from "../User/common/PageTitle";
+import classNames from "classnames";
+function TitleHeader({ title, details, shaded, attrs }) {
   const { t, i18n } = useTranslation();
+  const classes = classNames(
+    "ml-sm-auto mr-sm-auto",
+    "text-center",
+    "text-md-left",
+    "mb-sm-0"
+  );
   return (
-    <div style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}>
-      <header className="w3-container w3-center w3-padding-32">
-        <h1 style={{ color: text }}>
-          <b>{title}</b>
-        </h1>
-        <p>
-          {details ?? details}{" "}
-          <span className="w3-tag" style={{ backgroundColor: text }}>
-            {shaded ?? shaded}
-          </span>
-        </p>
-      </header>
-    </div>
+    <Row noGutters className="page-header py-4">
+      <Col xs="12" sm="4" className={classes} md="12">
+        <span className="text-uppercase page-subtitle">{details}</span>
+        <h3 className="page-title">{title}</h3>
+      </Col>
+    </Row>
   );
 }
 

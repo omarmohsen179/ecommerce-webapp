@@ -84,7 +84,6 @@ function ProductList() {
     },
   ];
   const togglefilter = useCallback(() => {
-    console.log(windowDimenion.winWidth);
     document.getElementById("products-list").style.width =
       windowDimenion.winWidth > 1200 && !sidestate ? "75%" : "100%";
     document.getElementById("sidemenux").style.width = !sidestate

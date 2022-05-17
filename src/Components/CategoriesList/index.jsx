@@ -90,6 +90,7 @@ function CategoryList({ data = [], style, title }) {
   const { t, i18n } = useTranslation();
   return (
     <div
+    id="/#cat"
       className=" main-category-container"
       style={({ backgroundColor: "#e8e8e8" }, style)}
     >

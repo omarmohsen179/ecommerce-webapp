@@ -147,8 +147,8 @@ function Footer2() {
 
         <div className="container">
           <ul className="foote_bottom_ul_amrc">
-            {pages.current.map((ele) => (
-              <li>
+            {pages.current.map((ele, index) => (
+              <li key={index}>
                 <Link to={ele.route}>{t(ele.name)}</Link>
               </li>
             ))}
