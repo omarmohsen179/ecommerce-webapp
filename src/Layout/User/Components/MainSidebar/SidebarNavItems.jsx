@@ -2,7 +2,7 @@ import React from "react";
 import { Nav } from "shards-react";
 import { NavLink as RouteNavLink } from "react-router-dom";
 import { NavItem, NavLink } from "shards-react";
-import { Store } from "../flux";
+
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -28,7 +28,7 @@ const SidebarNavItem = ({ item }) => (
 );
 
 const SidebarNavItems = (props) => {
-  const [navItems, setnavItems] = useState(Store.getSidebarItems());
+  const [navItems, setnavItems] = useState([]);
   let selector = useSelector(side_menu_data);
   useEffect(() => {
     setnavItems(selector);

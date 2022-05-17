@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col } from "shards-react";
 
-import MainNavbar from "../../Components/User/layout/MainNavbar/MainNavbar";
-import MainSidebar from "../../Components/User/layout/MainSidebar/MainSidebar";
-import MainFooter from "../../Components/User/layout/MainFooter";
+import MainSidebar from "./Components/MainSidebar/MainSidebar";
+import MainFooter from "./Components/MainFooter";
+import SidebarMainNavbar from "./Components/MainSidebar/SidebarMainNavbar";
 
 const DefaultLayout = ({ children, noNavbar, noFooter }) => (
   <Container fluid>
@@ -17,7 +17,7 @@ const DefaultLayout = ({ children, noNavbar, noFooter }) => (
         sm="12"
         tag="main"
       >
-        {!noNavbar && <MainNavbar />}
+        {!noNavbar && <SidebarMainNavbar />}
         {children}
         {!noFooter && <MainFooter />}
       </Col>

@@ -327,7 +327,7 @@ function NavigationBar() {
                 <li
                   key={index}
                   className={
-                    getRoutes()?.route == ele?.route
+                    getRoutes()?.route === ele?.route
                       ? "active-page allnav"
                       : " allnav"
                   }

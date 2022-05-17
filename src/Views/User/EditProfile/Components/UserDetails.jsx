@@ -8,23 +8,26 @@ import {
   ListGroupItem,
   Progress,
 } from "shards-react";
+import ButtonComponent from "../../../../Components/ButtonComponent";
 
 const UserDetails = ({ userDetails }) => (
   <Card small className="mb-4 pt-3">
     <CardHeader className="border-bottom text-center">
       <div className="mb-3 mx-auto">
-        <img
-          className="rounded-circle"
-          src={userDetails.avatar}
-          alt={userDetails.name}
-          width="110"
-        />
+        {userDetails.avatar ? (
+          <img
+            className="rounded-circle"
+            src={userDetails.avatar}
+            alt={userDetails.name}
+            width="110"
+          />
+        ) : (
+          <i style={{ fontSize: "30px" }} className="fas fa-user"></i>
+        )}
       </div>
       <h4 className="mb-0">{userDetails.name}</h4>
       <span className="text-muted d-block mb-2">{userDetails.jobTitle}</span>
-      <Button pill outline size="sm" className="mb-2">
-        <i className="material-icons mr-1">person_add</i> Follow
-      </Button>
+      <ButtonComponent title={"Upload"} />
     </CardHeader>
     <ListGroup flush>
       <ListGroupItem className="px-4">
@@ -32,14 +35,6 @@ const UserDetails = ({ userDetails }) => (
           <strong className="text-muted d-block mb-2">
             {userDetails.performanceReportTitle}
           </strong>
-          <Progress
-            className="progress-sm"
-            value={userDetails.performanceReportValue}
-          >
-            <span className="progress-value">
-              {userDetails.performanceReportValue}%
-            </span>
-          </Progress>
         </div>
       </ListGroupItem>
       <ListGroupItem className="p-4">
@@ -62,7 +57,6 @@ UserDetails.propTypes = {
 UserDetails.defaultProps = {
   userDetails: {
     name: "Sierra Brooks",
-    avatar: "./0.jpg",
     jobTitle: "Project Manager",
     performanceReportTitle: "Workload",
     performanceReportValue: 74,
