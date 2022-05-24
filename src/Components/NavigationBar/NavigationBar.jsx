@@ -40,8 +40,8 @@ function NavigationBar() {
         />
       ),
     },
-    { icon: "fas fa-address-card", name: "About", route: "/gallery" },
     { icon: "fa-solid fa-phone", name: "Contact-Us", route: "/contact-us" },
+    // { icon: "fas fa-address-card", name: "About", route: "/gallery" },
   ]);
   const [screenSize, getDimension] = useState({
     dynamicWidth: window.innerWidth,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import {
   Card,
@@ -10,42 +10,56 @@ import {
 } from "shards-react";
 import ButtonComponent from "../../../../Components/ButtonComponent";
 
-const UserDetails = ({ userDetails }) => (
-  <Card small className="mb-4 pt-3">
-    <CardHeader className="border-bottom text-center">
-      <div className="mb-3 mx-auto">
-        {userDetails.avatar ? (
-          <img
-            className="rounded-circle"
-            src={userDetails.avatar}
-            alt={userDetails.name}
-            width="110"
-          />
-        ) : (
-          <i style={{ fontSize: "30px" }} className="fas fa-user"></i>
-        )}
-      </div>
-      <h4 className="mb-0">{userDetails.name}</h4>
-      <span className="text-muted d-block mb-2">{userDetails.jobTitle}</span>
-      <ButtonComponent title={"Upload"} />
-    </CardHeader>
-    <ListGroup flush>
-      <ListGroupItem className="px-4">
-        <div className="progress-wrapper">
-          <strong className="text-muted d-block mb-2">
-            {userDetails.performanceReportTitle}
-          </strong>
+const UserDetails = ({ userDetails }) => {
+  const defualtvalues = useRef({
+    FullName: "",
+    CPassword: "",
+    Username: "",
+    Password: "",
+    Email: "",
+  });
+  const [values, setvalues] = useState(defualtvalues.current);
+  const handleChange = useCallback((e) => {
+    setvalues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }, []);
+
+  return (
+    <Card small className="mb-4 pt-3">
+      <CardHeader className="border-bottom text-center">
+        <div className="mb-3 mx-auto">
+          {userDetails.avatar ? (
+            <img
+              className="rounded-circle"
+              src={userDetails.avatar}
+              alt={userDetails.name}
+              width="110"
+            />
+          ) : (
+            <i style={{ fontSize: "30px" }} className="fas fa-user"></i>
+          )}
         </div>
-      </ListGroupItem>
-      <ListGroupItem className="p-4">
-        <strong className="text-muted d-block mb-2">
-          {userDetails.metaTitle}
-        </strong>
-        <span>{userDetails.metaValue}</span>
-      </ListGroupItem>
-    </ListGroup>
-  </Card>
-);
+        <h4 className="mb-0">{userDetails.name}</h4>
+        <span className="text-muted d-block mb-2">{userDetails.jobTitle}</span>
+        <ButtonComponent title={"Upload"} />
+      </CardHeader>
+      <ListGroup flush>
+        <ListGroupItem className="px-4">
+          <div className="progress-wrapper">
+            <strong className="text-muted d-block mb-2">
+              {userDetails.performanceReportTitle}
+            </strong>
+          </div>
+        </ListGroupItem>
+        <ListGroupItem className="p-4">
+          <strong className="text-muted d-block mb-2">
+            {userDetails.metaTitle}
+          </strong>
+          <span>{userDetails.metaValue}</span>
+        </ListGroupItem>
+      </ListGroup>
+    </Card>
+  );
+};
 
 UserDetails.propTypes = {
   /**
