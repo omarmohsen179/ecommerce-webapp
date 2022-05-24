@@ -85,7 +85,11 @@ function Unknown({ match }) {
             path={`${match.url}create-account`}
             component={CreateAccount}
           />
+<<<<<<< HEAD
           <Route path={`${match.url}contact-us`} component={ContactUs} />
+=======
+
+>>>>>>> 82ddb06f4d1b0427b5861e41c3110ed9ca25d8b0
           <Route
             path={`${match.url}not-found`}
             component={() => <h1>Not Found</h1>}
