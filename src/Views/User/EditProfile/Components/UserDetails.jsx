@@ -68,9 +68,12 @@ UserDetails.propTypes = {
   userDetails: PropTypes.object,
 };
 
+// const firstName = JSON.parse(localStorage.getItem("inputs")).FirstName;
+// const lastName = JSON.parse(localStorage.getItem("inputs")).LastName;
+
 UserDetails.defaultProps = {
   userDetails: {
-    name: "Sierra Brooks",
+    name: "sara ahmad",
     jobTitle: "Project Manager",
     performanceReportTitle: "Workload",
     performanceReportValue: 74,
