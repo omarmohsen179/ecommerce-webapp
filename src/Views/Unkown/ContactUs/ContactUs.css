@@ -1,0 +1,35 @@
+.intro-contactus-container {
+  /* color: rgb(91, 168, 220); */
+  margin-top: 150px;
+  margin-bottom: 30px;
+}
+.image-container {
+  width: 300px;
+}
+.contact-us-list-container {
+  display: flex;
+  justify-content: center;
+  color: rgb(91, 168, 220);
+  margin: 150px 0;
+}
+.contact-us-info-element {
+  padding: 10px;
+  border: 2px solid rgb(229 229 229);
+  margin: 10px;
+}
+
+@media screen and (min-width: 1000px) {
+  .contact-us-form {
+    border: 2px solid white;
+  }
+  .contact-us-form-container {
+    padding: 40px;
+  }
+}
+
+.contact-us-form-container {
+  min-height: 600px;
+  background-color: rgb(91, 168, 220);
+  color: white;
+  text-align: center;
+}

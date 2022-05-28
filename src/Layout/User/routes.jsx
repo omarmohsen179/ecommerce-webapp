@@ -11,6 +11,7 @@ import UsersAdmin from "../../Views/User/UsersAdmin";
 
 import EditProfile from "../../Views/User/EditProfile";
 import Home from "../../Views/User/Home";
+import EditPage from "../../Views/User/Products/EditProduct/EditProduct";
 const layoutPath = "/dashboard";
 export default [
   {
@@ -93,6 +94,15 @@ export default [
     key: 4,
     component: UsersAdmin,
     title: "user admin",
+    htmlBefore: '<i class="material-icons">vertical_split</i>',
+    htmlAfter: "",
+  },
+  {
+    path: layoutPath + "/edit-product",
+    layout: DefaultLayout,
+    key: 4,
+    component: EditPage,
+    title: "Edit",
     htmlBefore: '<i class="material-icons">vertical_split</i>',
     htmlAfter: "",
   },

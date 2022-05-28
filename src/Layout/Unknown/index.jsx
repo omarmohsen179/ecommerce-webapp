@@ -19,7 +19,7 @@ import ForgetPassword from "../../Views/Auth/ForgetPassword";
 import CreateAccount from "../../Views/Auth/CreateAccount";
 import ResetPassword from "../../Views/Auth/ResetPassword";
 import EmailConfirmation from "../../Views/Auth/Confirm";
-import ContactUs from "../../Views/Unkown/Contacts/ContactUs";
+import ContactUs from "../../Views/Unkown/ContactUs";
 
 function Unknown({ match }) {
   useEffect(() => (window.onscroll = onScroll), []);
