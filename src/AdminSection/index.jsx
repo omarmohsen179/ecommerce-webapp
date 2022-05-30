@@ -2,40 +2,31 @@ import axios, { AxiosRequestConfig } from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useMemo } from "react";
 
-import { Status } from "../../../Enums";
-import { REQUEST } from "../../../Services/callAPI";
-import ControlsTable from "../../../SharedComponents/AdminPanel/ControlsTable/ControlsTable";
-
-import { apiEndPoint } from "../../../Services/config.json";
 import { useHistory } from "react-router-dom";
-interface Props<T extends { Id: number }> {
-  data?: T[];
-  component: Function;
-  colAttributes: any[];
-  controller?: string;
-  productId?: number;
-}
+import { ApiBaseUrl } from "../Service/config";
+import REQUEST from "../Service/Request";
+import ControlsTable from "../Views/User/Products/Products/Copmponents/ControlsTable/ControlsTable";
 
-export default function AdminSection<T extends { Id: number }>({
+export default function AdminSection({
   data,
   component: Component,
   colAttributes = [],
   controller,
   productId,
-}: Props<T>) {
+}) {
   let history = useHistory();
 
-  const [status, setStatus] = useState<Status>(Status.IDLE);
+  const [status, setStatus] = useState("IDLE");
 
   const [itemToUpdate, setItemToUpdate] = useState();
 
-  const [records, setRecords] = useState<T[]>([]);
+  const [records, setRecords] = useState([]);
 
   useEffect(() => {
     if (data) {
       data.map((item) => {
-        if (item["Image"] && !(item["Image"] as string).includes(apiEndPoint)) {
-          item["Image"] = `${apiEndPoint}${item["Image"]}`;
+        if (item["Image"] && !item["Image"].includes(ApiBaseUrl)) {
+          item["Image"] = `${ApiBaseUrl}${item["Image"]}`;
         }
         return item;
       });
@@ -46,32 +37,32 @@ export default function AdminSection<T extends { Id: number }>({
   // Internal Updates
   const updateRowHandle = useCallback((e) => {
     setItemToUpdate(e.data);
-    setStatus(Status.UPDATE);
+    setStatus("UPDATE");
   }, []);
 
   const showForm = useMemo(() => {
-    return status === Status.ADD || status === Status.UPDATE;
+    return status === "ADD" || status === "UPDATE";
   }, [status]);
 
   const deleteItem = useCallback(
     async (e) => {
       e.cancel = true;
-      let config: AxiosRequestConfig = {
+      let config = {
         method: "DELETE",
         url: controller + "/" + e.data.CategoryId,
       };
 
       REQUEST(config)
-        .then(async (response: any) => {
+        .then(async (response) => {
           setRecords((prevState) => {
             return [...prevState.filter((item) => item.Id !== e.data.Id)];
           });
 
-          setStatus(Status.IDLE);
+          setStatus("IDLE");
 
-          await e.component.refresh(true);
+          //  await e.component.refresh(true);
 
-          e.component.cancelEditData();
+          //   e.component.cancelEditData();
         })
         .catch((error) => {
           console.log(error);
@@ -81,19 +72,19 @@ export default function AdminSection<T extends { Id: number }>({
   );
 
   const saveForm = useCallback(
-    (data, images: any = []) => {
+    (data, images = []) => {
       data.ProductId = productId;
 
       if (
         typeof data.Image === "string" &&
         data.Image &&
-        data.Image.includes(apiEndPoint)
+        data.Image.includes(ApiBaseUrl)
       ) {
-        data.Image = data.Image.replace(apiEndPoint, "");
+        data.Image = data.Image.replace(ApiBaseUrl, "");
       }
       let formData = new FormData();
       for (let [key, value] of Object.entries(data)) {
-        formData.append(key.toString(), value as Blob | string);
+        formData.append(key.toString(), value);
       }
       if (images && images.length > 0) {
         for (var i = 0; i < images.length; i++) {
@@ -101,28 +92,22 @@ export default function AdminSection<T extends { Id: number }>({
         }
       }
 
-      let config: AxiosRequestConfig = {
-        method: status === Status.ADD ? "POST" : "PUT",
+      let config = {
+        method: status === "ADD" ? "POST" : "PUT",
         url: controller,
         data: formData,
       };
 
       REQUEST(config)
-        .then((response: any) => {
-          if (
-            response.Image &&
-            !(response.Image as string).includes(apiEndPoint)
-          ) {
-            response.Image = `${apiEndPoint}${response.Image}`;
+        .then((response) => {
+          if (response.Image && !response.Image.includes(ApiBaseUrl)) {
+            response.Image = `${ApiBaseUrl}${response.Image}`;
           }
-          if (
-            response["Image"] &&
-            !(response["Image"] as string).includes(apiEndPoint)
-          ) {
-            response["Image"] = `${apiEndPoint}${response["Image"]}`;
+          if (response["Image"] && !response["Image"].includes(ApiBaseUrl)) {
+            response["Image"] = `${ApiBaseUrl}${response["Image"]}`;
           }
 
-          if (status === Status.ADD) {
+          if (status === "ADD") {
             setRecords([...records, response]);
           } else {
             /* setRecords((prevState) => {
@@ -143,7 +128,7 @@ export default function AdminSection<T extends { Id: number }>({
             );
           }
 
-          setStatus(Status.IDLE);
+          setStatus("IDLE");
 
           setItemToUpdate(undefined);
         })
@@ -153,7 +138,7 @@ export default function AdminSection<T extends { Id: number }>({
     },
     [controller, productId, status, records]
   );
-  const [Auth, setAuth] = useState<any>("");
+  const [Auth, setAuth] = useState("");
   useEffect(() => {
     let INFI = async () => {
       let x = await checkusertype();
@@ -161,32 +146,32 @@ export default function AdminSection<T extends { Id: number }>({
     };
     INFI();
   }, []);
-  let checkusertype: any = useCallback(async function () {
+  let checkusertype = useCallback(async function () {
     let item = JSON.parse(localStorage.getItem("user") || "{}");
-
-    !item || !item.type
-      ? history.push("/")
-      : await axios
-          .get(apiEndPoint + "/api/check-type", {
-            headers: {
-              ...axios.defaults.headers,
-              Authorization: `bearer ${
-                JSON.parse(localStorage.getItem("user") || "{}").token
-              }`,
-            },
-          })
-          .then((res) => {
-            return res[0] ? res[0] : "";
-          })
-          .catch((err) => {
-            history.push("/log-in");
-            localStorage.removeItem("user");
-            return "";
-          });
+    // history.push("/")
+    // !item || !item.type
+    //   ?
+    //   : await axios
+    //       .get(ApiBaseUrl + "/api/check-type", {
+    //         headers: {
+    //           ...axios.defaults.headers,
+    //           Authorization: `bearer ${
+    //             JSON.parse(localStorage.getItem("user") || "{}").token
+    //           }`,
+    //         },
+    //       })
+    //       .then((res) => {
+    //         return res[0] ? res[0] : "";
+    //       })
+    //       .catch((err) => {
+    //         // history.push("/log-in");
+    //         // localStorage.removeItem("user");
+    //         return "";
+    //       });
     return item?.type ? item?.type[0] : "";
   }, []);
   const cancelForm = useCallback(() => {
-    setStatus(Status.IDLE);
+    setStatus("IDLE");
     setItemToUpdate(undefined);
   }, []);
 
@@ -194,11 +179,11 @@ export default function AdminSection<T extends { Id: number }>({
     <>
       <ControlsTable
         disabled={showForm}
-        allowAdd={Auth == "SupperAdmin" || controller !== "Categories"}
-        allowDelete={Auth == "SupperAdmin" || controller !== "Categories"}
+        allowAdd={"Categories"}
+        allowDelete={"Categories"}
         colAttributes={colAttributes}
         dataSource={records}
-        onAddButtonClicked={() => setStatus(Status.ADD)}
+        onAddButtonClicked={() => setStatus("ADD")}
         onRowClick={updateRowHandle}
         onRowRemoving={deleteItem}
       />

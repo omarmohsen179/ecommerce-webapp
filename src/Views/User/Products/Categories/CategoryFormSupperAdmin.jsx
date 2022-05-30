@@ -1,23 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Col, FormGroup, Input, Row } from "reactstrap";
-import { Status } from "../Products/Copmponents/ControlsTable/Enums";
-import { Category } from "../Products/Copmponents/ControlsTable/Interfaces";
-import InputTwoLanguages from "../Products/Copmponents/ControlsTable/InputTwoLanguages/InputTwoLanguages";
+import InputTwoLanguages from "../../../../Components/InputTwoLanguages/InputTwoLanguages";
 
-interface Props {
-  data: Category | undefined;
-  onSubmit: (formData: Category) => void;
-  onCancel: () => void;
-}
-
-const CategoryFormSupperAdmin: React.FC<Props> = ({
-  onSubmit,
-  onCancel,
-  data,
-}) => {
+const CategoryFormSupperAdmin = ({ onSubmit, onCancel, data }) => {
   const { t } = useTranslation();
-  const [categoryInitValues, setCategoryInitValues] = useState<Category>({
+  const [categoryInitValues, setCategoryInitValues] = useState({
     Id: 0,
     Title: "",
     TitleEn: "",
@@ -28,17 +16,17 @@ const CategoryFormSupperAdmin: React.FC<Props> = ({
     CategoryId: 0,
   });
 
-  const [status, setStatus] = useState(Status.IDLE);
+  const [status, setStatus] = useState("IDLE");
 
-  const [category, setCategory] = useState<Category>(categoryInitValues);
+  const [category, setCategory] = useState(categoryInitValues);
 
   useEffect(() => {
     if (data) {
-      setStatus(Status.UPDATE);
+      setStatus("UPDATE");
       setCategory({ ...data, Id: data.CategoryId });
       setCategoryInitValues({ ...data, Id: data.CategoryId });
     } else {
-      setStatus(Status.ADD);
+      setStatus("ADD");
     }
   }, [data]);
   const updateCategory = useCallback((value, id) => {
@@ -96,7 +84,7 @@ const CategoryFormSupperAdmin: React.FC<Props> = ({
                 disabled={isNotValid}
                 onClick={addHandle}
               >
-                {status === Status.UPDATE ? t("Update") : t("Add")}
+                {status === "UPDATE" ? t("Update") : t("Add")}
               </Button>
             </Col>
             <Col style={{ width: "170px" }}>

@@ -1,19 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Col, FormGroup, Input, Row } from "reactstrap";
-import { Status } from "../Products/Copmponents/ControlsTable/Enums";
-import { Category } from "../Products/Copmponents/ControlsTable/Interfaces";
-import InputTwoLanguages from "../Products/Copmponents/ControlsTable/InputTwoLanguages/InputTwoLanguages";
+import InputTwoLanguages from "../../../../Components/InputTwoLanguages/InputTwoLanguages";
 
-interface Props {
-  data: Category | undefined;
-  onSubmit: (formData: Category) => void;
-  onCancel: () => void;
-}
-
-const CategoryForm: React.FC<Props> = ({ onSubmit, onCancel, data }) => {
+const CategoryForm = ({ onSubmit, onCancel, data }) => {
   const { t } = useTranslation();
-  const [categoryInitValues, setCategoryInitValues] = useState<Category>({
+  const [categoryInitValues, setCategoryInitValues] = useState({
     Id: 0,
     Title: "",
     TitleEn: "",
@@ -24,17 +16,17 @@ const CategoryForm: React.FC<Props> = ({ onSubmit, onCancel, data }) => {
     CategoryId: 0,
   });
 
-  const [status, setStatus] = useState(Status.IDLE);
+  const [status, setStatus] = useState("IDLE");
 
-  const [category, setCategory] = useState<Category>(categoryInitValues);
+  const [category, setCategory] = useState(categoryInitValues);
 
   useEffect(() => {
     if (data) {
-      setStatus(Status.UPDATE);
+      setStatus("UPDATE");
       setCategory({ ...data });
       setCategoryInitValues({ ...data });
     } else {
-      setStatus(Status.ADD);
+      setStatus("ADD");
     }
   }, [data]);
   const updateCategory = useCallback((value, id) => {
@@ -71,7 +63,6 @@ const CategoryForm: React.FC<Props> = ({ onSubmit, onCancel, data }) => {
         <InputTwoLanguages
           id="Title"
           label="Title"
-          enDisabled
           onValueChange={updateCategory}
           value={category.Title}
           valueEn={category.TitleEn}
@@ -79,7 +70,6 @@ const CategoryForm: React.FC<Props> = ({ onSubmit, onCancel, data }) => {
         <InputTwoLanguages
           id="Description"
           label="Description"
-          enDisabled
           onValueChange={updateCategory}
           value={category.Description}
           valueEn={category.DescriptionEn}
@@ -103,7 +93,7 @@ const CategoryForm: React.FC<Props> = ({ onSubmit, onCancel, data }) => {
                 disabled={isNotValid}
                 onClick={addHandle}
               >
-                {status === Status.UPDATE ? t("Update") : t("Add")}
+                {status === "update" ? t("Update") : t("Add")}
               </Button>
             </Col>
             <Col style={{ width: "170px" }}>

@@ -13,39 +13,7 @@ import {
 import "./Table.css";
 import "jspdf-autotable";
 
-export interface ColAttribute {
-  field: string;
-  caption: string;
-  isVisable?: boolean;
-  dataType?: any;
-  alignment?: "right" | "left" | "center";
-  format?: string;
-  widthRatio?: string;
-  grouped?: false;
-}
-
-interface Props {
-  id?: string;
-  disabled?: boolean;
-  dataSource?: any[];
-  colAttributes: ColAttribute[];
-  filterRow?: boolean;
-  groupPanel?: boolean;
-  headerFilter?: boolean;
-  allowAdd?: boolean;
-  allowUpdate?: boolean;
-  allowDelete?: boolean;
-  columnChooser?: boolean;
-  onAddButtonClicked?: any;
-  onRowRemoving?: any;
-  onRowClick?: any;
-  onSelectionChanged?: any;
-  onRowDoubleClick?: any;
-  onRowInserting?: any;
-  onSaving?: any;
-}
-
-const ControlsTable: React.FC<Props> = ({
+const ControlsTable = ({
   id = "",
   disabled = false,
   //* [{ }, ...]

@@ -1,18 +1,7 @@
 import React from "react";
 import { FormGroup, Input, Row, Col } from "reactstrap";
 
-interface Props {
-  id: string;
-  label: string;
-  value?: string;
-  valueEn?: string;
-  maxLength?: number;
-  enDisabled?: boolean;
-  DisabledAnotherLangue?: boolean;
-  onValueChange: (value: string, id: string) => void;
-}
-
-const InputTwoLanguages: React.FC<Props> = ({
+const InputTwoLanguages = ({
   id,
   label,
   value,

@@ -2,18 +2,17 @@ import axios, { AxiosRequestConfig } from "axios";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardBody, CardHeader } from "reactstrap";
-import AdminSection from "../Products/Copmponents/ControlsTable/AdminSection";
-import { Category } from "../Products/Copmponents/ControlsTable/Interfaces";
+
 // import { REQUEST } from "../../Services/callAPI";
 import CategoryForm from "./CategoryForm";
 import { useHistory } from "react-router-dom";
 // import { apiEndPoint } from "../../Services/config.json";
 import CategoryFormSupperAdmin from "./CategoryFormSupperAdmin";
-interface Props {}
+import AdminSection from "../../../../AdminSection";
 
-const Categories: React.FC<Props> = () => {
+const Categories = () => {
   let history = useHistory();
-  const [productsCategories, setProductsCategories] = useState<Category[]>([]);
+  const [productsCategories, setProductsCategories] = useState([]);
   const { t } = useTranslation();
   const categoriesColAttributes = useMemo(() => {
     return [
@@ -48,7 +47,7 @@ const Categories: React.FC<Props> = () => {
   //     setProductsCategories([..._productsCategries]);
   //   });
   // }, []);
-  const [Auth, setAuth] = useState<any>("");
+  const [Auth, setAuth] = useState("SupperAdmin");
   // React.useEffect(() => {
   //   let INFI = async () => {
   //     let x = await checkusertype();
@@ -82,21 +81,17 @@ const Categories: React.FC<Props> = () => {
   // }, []);
   return (
     <>
-      <div className="content">
+      <div className="content" style={{ padding: 20 }}>
         <Card className="card-user">
           <CardHeader>
             <h4>{t("Categories")}</h4>
           </CardHeader>
           <CardBody>
-            <AdminSection<Category>
+            <AdminSection
               data={productsCategories}
-              component={
-                Auth == "SupperAdmin" ? CategoryFormSupperAdmin : CategoryForm
-              }
+              component={CategoryForm}
               colAttributes={categoriesColAttributes}
-              controller={
-                Auth == "SupperAdmin" ? "CategoryIdentity" : "Categories"
-              }
+              controller={"Categories"}
             />
           </CardBody>
         </Card>

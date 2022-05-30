@@ -68,75 +68,13 @@ const data = [
 function Products() {
   return (
     <div style={{ padding: 25 }}>
-      {/* <MasterTable
+      <MasterTable
         dataSource={data}
         colAttributes={columns}
         onRowDoubleClick={(e) => useHistory.push("/")}
         onRowRemoving={(e) => console.log(e)}
-      /> */}
-      {/* 
-      <DataGrid
-        dataSource={data}
-        filterRow={true}
-        showBorders={true}
-        remoteOperations={true}
-        searchPanel={true}
-        allowFiltering={true}
-      >
-        <SearchPanel visible={true} text={searchText} />
-
-        <Column dataField="name" dataType="string" />
-        <Column dataField="price" dataType="number" />
-        <Column dataField="quantity" dataType="number" />
-
-        <Paging defaultPageSize={12} />
-        <Pager
-          showPageSizeSelector={true}
-          allowedPageSizes={allowedPageSizes}
-        />
-      </DataGrid> */}
-
-      <DataGrid
-        dataSource={data}
-        allowColumnReordering={true}
-        rowAlternationEnabled={true}
-        showBorders={true}
-        // onContentReady={this.onContentReady}
-      >
-        <FilterRow visible={true} />
-        <FilterPanel visible={true} />
-        {/* <FilterBuilderPopup position={filterBuilderPopupPosition} /> */}
-        <HeaderFilter visible={true} />
-        {/* <Scrolling mode="infinite" /> */}
-
-        <SearchPanel visible={true} highlightCaseSensitive={true} />
-
-        {/* <Column dataField="Product" groupIndex={0} /> */}
-        {/* <Column
-          dataField="Amount"
-          caption="Sale Amount"
-          dataType="number"
-          format="currency"
-          alignment="right"
-        />
-        <Column
-          dataField="Discount"
-          caption="Discount %"
-          dataType="number"
-          format="percent"
-          alignment="right"
-          allowGrouping={false}
-          cssClass="bullet"
-        /> */}
-        <Column dataField="name" dataType="string" />
-        <Column dataField="price" dataType="number" />
-        <Column dataField="quantity" dataType="number" />
-        <Column dataField="SaleDate" dataType="date" />
-        <Column dataField="Customer" dataType="string" width={150} />
-
-        <Pager allowedPageSizes={5} showPageSizeSelector={true} />
-        <Paging defaultPageSize={10} />
-      </DataGrid>
+        allowAdd
+      />
     </div>
   );
 }
