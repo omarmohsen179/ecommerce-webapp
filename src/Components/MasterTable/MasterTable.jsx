@@ -10,6 +10,7 @@ import saveAs from "file-saver";
 import { exportDataGrid } from "devextreme/excel_exporter";
 import CustomStore from "devextreme/data/custom_store";
 import { alert } from "devextreme/ui/dialog";
+import "devextreme/dist/css/dx.light.css";
 
 import {
   Column,
@@ -235,12 +236,12 @@ function MasterTable({
         </Editing>
         <Scrolling mode="virtual" rowRenderingMode="virtual" />
         <Paging enabled={true} />
-        {/* <Paging defaultPageSize={pageSize} /> */}
-        {/* <Pager
-                    showPageSizeSelector={true}
-                    allowedPageSizes={[pageSize, pageSize * 2, pageSize * 4]}
-                    showInfo={true}
-                /> */}
+        <Paging defaultPageSize={pageSize} />
+        <Pager
+          showPageSizeSelector={true}
+          allowedPageSizes={[pageSize, pageSize * 2, pageSize * 4]}
+          showInfo={true}
+        />
         {colAttributes?.length > 0 &&
           colAttributes.map((col, index) => {
             return (
