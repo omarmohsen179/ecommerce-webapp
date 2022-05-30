@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { React, useState } from "react";
 import { useHistory } from "react-router";
 import MasterTable from "../../../Components/MasterTable/MasterTable";
@@ -16,6 +17,11 @@ import DataGrid, {
   FilterBuilderPopup,
   FilterPanel,
 } from "devextreme-react/data-grid";
+=======
+import React from "react";
+import { useHistory } from "react-router";
+import MasterTable from "../../../Components/MasterTable/MasterTable";
+>>>>>>> hatem2
 
 const columns = [
   {

@@ -41,7 +41,10 @@ import {
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import { exportDataGrid as exportDataGridToPdf } from "devextreme/pdf_exporter";
+<<<<<<< HEAD
 // import { GET_SEARCH_ITEMS } from "../../../Services/ApiServices/ItemsAPI";
+=======
+>>>>>>> hatem2
 import { useTranslation } from "react-i18next";
 
 const dataGridRef = React.createRef();
@@ -66,6 +69,7 @@ function MasterTable({
   height = "100%",
   filterRow = false,
   groupPanel = false,
+<<<<<<< HEAD
   headerFilter = false,
   allowAdd = false,
   allowUpdate = false,
@@ -74,6 +78,16 @@ function MasterTable({
   allowExcel = false,
   allowPaging = false,
   columnChooser = true,
+=======
+  headerFilter = true,
+  allowAdd = true,
+  allowUpdate = false,
+  allowDelete = true,
+  allowPrint = false,
+  allowExcel = false,
+  allowPaging = false,
+  columnChooser = false,
+>>>>>>> hatem2
   pageSize = 5,
   onSelectionChanged,
   onRowRemoving,
@@ -236,12 +250,21 @@ function MasterTable({
         </Editing>
         <Scrolling mode="virtual" rowRenderingMode="virtual" />
         <Paging enabled={true} />
+<<<<<<< HEAD
         <Paging defaultPageSize={pageSize} />
         <Pager
           showPageSizeSelector={true}
           allowedPageSizes={[pageSize, pageSize * 2, pageSize * 4]}
           showInfo={true}
         />
+=======
+        {/* <Paging defaultPageSize={pageSize} /> */}
+        {/* <Pager
+                    showPageSizeSelector={true}
+                    allowedPageSizes={[pageSize, pageSize * 2, pageSize * 4]}
+                    showInfo={true}
+                /> */}
+>>>>>>> hatem2
         {colAttributes?.length > 0 &&
           colAttributes.map((col, index) => {
             return (
