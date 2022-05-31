@@ -201,7 +201,7 @@ const UserAccountDetails = ({ title }) => {
                 </Row>
                 <Row form>
                   {/* Description */}
-                  <Col md="122" className="form-group">
+                  <Col md="12" className="form-group">
                     <label htmlFor="feDescription">Description</label>
                     <textarea
                       onChange={handleChange}

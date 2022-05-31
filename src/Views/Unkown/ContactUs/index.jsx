@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import ContactUsForm from "./Components/ContactUsForm";
 import ContactUslist from "./Components/ContactUslist";
 import Intro from "./Components/Intro";
-import "./ContactUs.css";
+import "./ContactUs.scss";
 function ContactUs() {
   return (
     <div
@@ -14,6 +14,7 @@ function ContactUs() {
         margin: "50px 20px",
         marginTop: "150px",
       }}
+      className="main-cont"
     >
       {/* <UpperPage Title={"Contact Us"} /> */}
       {/* <Intro />
