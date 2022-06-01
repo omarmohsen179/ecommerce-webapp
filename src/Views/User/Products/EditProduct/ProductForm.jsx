@@ -30,11 +30,15 @@ function ProductForm({ rowData, columns, dataSource, setData }) {
   //   });
   // }, []);
   function handleSubmit() {
-    dataSource.map(
-      (el) =>
-        el.ID === values.ID && setData([...dataSource, { ...el, ...values }])
-    );
-  }
+      const newData = dataSource.map((el) => {
+         if (el.ID === values.ID) {
+            return { ...el, ...values };
+         }
+         return el;
+      });
+      setData(newData);
+   }
+
 
   ///////////Add function /////////////////
 
