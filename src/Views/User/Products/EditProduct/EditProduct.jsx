@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import CrudTable from "../../../../Components/CrudTable/CrudTable";
 
 import DataGrid, {
@@ -12,13 +12,14 @@ import DataGrid, {
 import "devextreme-react/text-area";
 import { Item } from "devextreme-react/form";
 import SquaredInput from "../../../../Components/SquaredInput";
+import ProductForm from "./ProductForm";
 function EditProduct() {
-  const data = [
-    { name: "ps5", price: "16000", quantity: "20" },
-    { name: "ps4", price: "8000", quantity: "14" },
-    { name: "ps3", price: "4000", quantity: "20" },
-    { name: "ps3", price: "4000", quantity: "20" },
-  ];
+  const [data, setData] = useState([
+    { ID: 1, name: "ps5", price: "16000", quantity: "20" },
+    { ID: 2, name: "ps4", price: "8000", quantity: "14" },
+    { ID: 3, name: "ps3", price: "4000", quantity: "20" },
+    { ID: 4, name: "ps3", price: "4000", quantity: "20" },
+  ]);
 
   const colAttributes = [
     {
@@ -31,31 +32,18 @@ function EditProduct() {
     },
     {
       field: "quantity",
-      caption: "quantity",
+      caption: "Quantity",
     },
   ];
 
   return (
-    <CrudTable data={data} colAttributes={colAttributes}>
-      <SquaredInput
-        label={"Full Name"}
-        name="FullName"
-        // handleChange={handleChange}
-        // value={values["FullName"]}
-        required
-        // errorMessage={error.FullName}
-        // onBlur={CheckInputs(values, error)}
-      />
-      <SquaredInput
-        label={"Age"}
-        name="FullName"
-        // handleChange={handleChange}
-        // value={values["FullName"]}
-        required
-        // errorMessage={error.FullName}
-        // onBlur={CheckInputs(values, error)}
-      />
-    </CrudTable>
+    <CrudTable
+      data={data}
+      setData={setData}
+      // onRowRemoving={(event) => (event.cancel = true)}
+      colAttributes={colAttributes}
+      FormComponent={ProductForm}
+    />
   );
 }
 
