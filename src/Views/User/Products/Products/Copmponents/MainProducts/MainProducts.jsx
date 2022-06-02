@@ -140,6 +140,8 @@ const MainProducts = ({ colAttributes }) => {
 
   const [isClicked, setIsClicked] = useState(false);
   const [selectedItem, setselectedItem] = useState(-1);
+
+  const [hide, setHide] = useState(false);
   return (
     <Form style={{ padding: 20 }}>
       <Card className="card-user">
@@ -153,6 +155,7 @@ const MainProducts = ({ colAttributes }) => {
             dataSource={products}
             onAddButtonClicked={() => {
               setIsClicked(true);
+              setHide(false);
               redirectAdd();
             }}
             onRowDoubleClick={redirectEdit}
@@ -163,7 +166,12 @@ const MainProducts = ({ colAttributes }) => {
         </CardBody>
       </Card>
       {selectedItem >= 0 && (
-        <ProductForm isClicked={isClicked} value={selectedItem} />
+        <ProductForm
+          hide={hide}
+          setHide={setHide}
+          isClicked={isClicked}
+          value={selectedItem}
+        />
       )}
 
       {/* <button

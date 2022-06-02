@@ -48,6 +48,10 @@
   animation: moveToRight 1s ease-in-out;
   animation-delay: 0ms;
 }
+
+.hidden {
+  display: none;
+}
 @keyframes moveToRight {
   0% {
     transform: translateX(1300px);

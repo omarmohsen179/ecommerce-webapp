@@ -17,28 +17,15 @@ function ProductForm({ rowData, columns, dataSource, setData }) {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }, []);
 
-  // const handleSubmit = useCallback((e) => {
-  //   dataSource.map((el) => {
-  //     if (el.ID === values.ID) {
-  // setData({
-  //   ...el,
-  //   [el.name]: values.name,
-  //   [el.price]: values.price,
-  //   [el.quantity]: values.quantity,
-  // });
-  //     }
-  //   });
-  // }, []);
   function handleSubmit() {
-      const newData = dataSource.map((el) => {
-         if (el.ID === values.ID) {
-            return { ...el, ...values };
-         }
-         return el;
-      });
-      setData(newData);
-   }
-
+    const newData = dataSource.map((el) => {
+      if (el.ID === values.ID) {
+        return { ...el, ...values };
+      }
+      return el;
+    });
+    setData(newData);
+  }
 
   ///////////Add function /////////////////
 

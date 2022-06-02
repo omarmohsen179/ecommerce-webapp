@@ -1,5 +1,4 @@
-import React, { Children, useCallback, useState } from "react";
-import "./CrudTable.scss";
+import React, { Children, useCallback, useEffect, useState } from "react";
 
 import DataGrid, {
   Column,
@@ -9,6 +8,7 @@ import DataGrid, {
   Form,
   Item,
   Button,
+  Pager,
 } from "devextreme-react/data-grid";
 import "devextreme-react/text-area";
 // import { Button } from "devextreme-react";
@@ -36,6 +36,11 @@ function CrudTable({
     setData(data.filter((item) => item.ID !== e.data.ID));
   }
 
+  //////////// Close popup on submit ////////////
+  useEffect(() => {
+    setClicked(false);
+  }, [data]);
+
   return (
     <div style={{ padding: 30 }} id="data-grid-demo">
       <DataGrid
@@ -44,8 +49,13 @@ function CrudTable({
         id="gridContainer"
         dataSource={data}
         showBorders={true}
+        rowAlternationEnabled
+        showRowLines
       >
-        <Editing mode="row" useIcons={true} allowDeleting />
+        <Paging defaultPageSize={10} pageSize={10} />
+        <Pager showNavigationButtons={true} displayMode />
+
+        <Editing mode="cell" useIcons={true} allowDeleting allowAdding />
 
         {clicked && (
           <Popup visible={clicked} onHiding={() => setClicked(false)}>
@@ -67,7 +77,6 @@ function CrudTable({
           />
         ))}
         <Column type="buttons" width={110}>
-          <Button name="delete" />
           <Button
             hint="Clone"
             icon="edit"
@@ -75,19 +84,7 @@ function CrudTable({
             disabled={false}
             onClick={(e) => handleChange(e)}
           />
-
-          {/* <Button
-            hint="Clone"
-            icon="copy"
-            visible={true}
-            disabled={false}
-            onClick={(e) => {
-              //   console.log(JSON.stringify(e.row.data.ID));
-              //   const newData = data.filter((item) => item.ID !== e.row.data.ID);
-              //   data = newData;
-              handleDelete(e);
-            }}
-          /> */}
+          <Button name="delete" />
         </Column>
       </DataGrid>
     </div>

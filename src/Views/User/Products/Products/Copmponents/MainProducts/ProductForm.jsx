@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import ButtonComponent from "../../../../../../Components/ButtonComponent";
 import InputTwoLanguages from "../../../../../../Components/InputTwoLanguages/InputTwoLanguages";
 import SquaredInput from "../../../../../../Components/SquaredInput";
 import UploadImageButton from "../../../../../../Components/UploadImageButton/UploadImageButton";
 import { PRODUCT_ID } from "../../api";
+import "./ProductForm.css";
 
-function ProductForm({ value, isClicked }) {
+function ProductForm({ value, isClicked, hide, setHide }) {
   const tabs = useRef([
     { id: "one-tab", href: "#one", label: "Basic Info" },
     { id: "two-tab", href: "#two", label: "Header" },
@@ -80,7 +82,7 @@ function ProductForm({ value, isClicked }) {
   }, []);
 
   return (
-    <div className="add-product-form">
+    <div className={!hide ? "add-product-form" : "hidden"}>
       <div class="row">
         <div
           class="col-5"
@@ -108,6 +110,12 @@ function ProductForm({ value, isClicked }) {
                     </a>
                   </li>
                 ))}
+                <button
+                  className="product-form-btn"
+                  onClick={() => setHide(true)}
+                >
+                  <i className=" fas fa-x"></i>
+                </button>
               </ul>
             </div>
 
@@ -202,6 +210,7 @@ function ProductForm({ value, isClicked }) {
                   valueEn={valuesLang?.SubTitleEn}
                   onValueChange={handleChangeLang}
                 />
+                <ButtonComponent title="Submit" />
               </div>
             </div>
           </div>

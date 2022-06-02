@@ -19,6 +19,15 @@ function EditProduct() {
     { ID: 2, name: "ps4", price: "8000", quantity: "14" },
     { ID: 3, name: "ps3", price: "4000", quantity: "20" },
     { ID: 4, name: "ps3", price: "4000", quantity: "20" },
+    { ID: 4, name: "ps3", price: "4000", quantity: "20" },
+    { ID: 4, name: "ps3", price: "4000", quantity: "20" },
+    { ID: 4, name: "ps3", price: "4000", quantity: "20" },
+    { ID: 4, name: "ps3", price: "4000", quantity: "20" },
+    { ID: 4, name: "ps3", price: "4000", quantity: "20" },
+    { ID: 4, name: "ps3", price: "4000", quantity: "20" },
+    { ID: 4, name: "ps3", price: "4000", quantity: "20" },
+    { ID: 4, name: "ps3", price: "4000", quantity: "20" },
+    { ID: 4, name: "ps3", price: "4000", quantity: "20" },
   ]);
 
   const colAttributes = [
