@@ -96,7 +96,7 @@ export default [
     path: layoutPath + "/shop",
     layout: DefaultLayout,
     key: 3,
-    component: Web,
+    // component: Web,
     title: "shop",
     htmlBefore: '<i class="fas fa-shop"></i>',
     htmlAfter: "",

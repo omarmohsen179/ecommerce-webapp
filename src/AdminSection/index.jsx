@@ -13,6 +13,7 @@ export default function AdminSection({
   colAttributes = [],
   controller,
   productId,
+  allowEdit = "false",
 }) {
   let history = useHistory();
 
@@ -192,7 +193,7 @@ export default function AdminSection({
         colAttributes={colAttributes}
         dataSource={records}
         onAddButtonClicked={() => setStatus("ADD")}
-        onRowClick={updateRowHandle}
+        onRowClick={allowEdit === "true" && updateRowHandle}
         onRowRemoving={deleteItem}
       />
       {showForm && (

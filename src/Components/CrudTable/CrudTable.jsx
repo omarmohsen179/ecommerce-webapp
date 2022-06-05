@@ -23,6 +23,7 @@ function CrudTable({
   colAttributes = [],
   FormComponent,
   onRowRemoving,
+  allowEdit = false,
 }) {
   const [clicked, setClicked] = useState(false);
   const [dataRow, setDataRow] = useState(null);
@@ -40,6 +41,16 @@ function CrudTable({
   useEffect(() => {
     setClicked(false);
   }, [data]);
+
+  function cellRender(data) {
+    return (
+      <img
+        src={data.value}
+        style={{ width: "300px", height: "150px" }}
+        alt=""
+      />
+    );
+  }
 
   return (
     <div style={{ padding: 30 }} id="data-grid-demo">
@@ -74,16 +85,19 @@ function CrudTable({
             dataType={el.dataType || "string"}
             dataField={el.field}
             caption={el.caption}
+            cellRender={el.dataType === "Picture" ? cellRender : undefined}
           />
         ))}
         <Column type="buttons" width={110}>
-          <Button
-            hint="Clone"
-            icon="edit"
-            visible={true}
-            disabled={false}
-            onClick={(e) => handleChange(e)}
-          />
+          {allowEdit && (
+            <Button
+              hint="Clone"
+              icon="edit"
+              visible={true}
+              disabled={false}
+              onClick={(e) => handleChange(e)}
+            />
+          )}
           <Button name="delete" />
         </Column>
       </DataGrid>

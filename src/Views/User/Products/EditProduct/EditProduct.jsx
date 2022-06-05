@@ -13,6 +13,9 @@ import "devextreme-react/text-area";
 import { Item } from "devextreme-react/form";
 import SquaredInput from "../../../../Components/SquaredInput";
 import ProductForm from "./ProductForm";
+import { Card, CardBody, CardHeader } from "reactstrap";
+import { useTranslation } from "react-i18next";
+
 function EditProduct() {
   const [data, setData] = useState([
     { ID: 1, name: "ps5", price: "16000", quantity: "20" },
@@ -45,14 +48,25 @@ function EditProduct() {
     },
   ];
 
+  const { t } = useTranslation();
+
   return (
-    <CrudTable
-      data={data}
-      setData={setData}
-      // onRowRemoving={(event) => (event.cancel = true)}
-      colAttributes={colAttributes}
-      FormComponent={ProductForm}
-    />
+    <div className="content" style={{ padding: 20 }}>
+      <Card className="card-user">
+        <CardHeader>
+          <h4>{t("Edit Products")}</h4>
+        </CardHeader>
+        <CardBody>
+          <CrudTable
+            data={data}
+            setData={setData}
+            // onRowRemoving={(event) => (event.cancel = true)}
+            colAttributes={colAttributes}
+            FormComponent={ProductForm}
+          />
+        </CardBody>
+      </Card>
+    </div>
   );
 }
 

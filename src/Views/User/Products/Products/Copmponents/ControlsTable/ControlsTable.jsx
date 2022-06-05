@@ -35,7 +35,7 @@ const ControlsTable = ({
   onSaving,
 }) => {
   function cellRender(data) {
-    return <img style={{ width: "100px" }} src={data.value} alt="" />;
+    return <img style={{ width: "20%" }} src={data.value} alt="" />;
   }
 
   return (

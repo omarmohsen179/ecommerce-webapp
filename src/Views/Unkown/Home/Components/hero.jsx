@@ -1,7 +1,9 @@
 import { Anchor, Button, Carousel, Col, Row } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import Image from "../../../../Components/Image";
+import REQUEST from "../../../../Service/Request.js";
+
 const { Link } = Anchor;
 
 const AppHero = ({ t, i18n = {} }) => {
@@ -25,6 +27,18 @@ const AppHero = ({ t, i18n = {} }) => {
       Description: "here",
     },
   ];
+
+  const [dataa, setDataa] = useState();
+
+  let config = {
+    method: "GET",
+    url: "api/",
+  };
+
+  REQUEST(config)
+    .then((response) => setDataa(response))
+    .catch((error) => console.log(error));
+
   return (
     <>
       <div className="heroBlock  ">
