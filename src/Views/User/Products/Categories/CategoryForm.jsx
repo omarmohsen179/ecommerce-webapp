@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button, Col, FormGroup, Input, Row } from "reactstrap";
 import InputTwoLanguages from "../../../../Components/InputTwoLanguages/InputTwoLanguages";
+import UploadImageButton from "../../../../Components/UploadImageButton/UploadImageButton";
+import { ApiBaseUrl } from "../../../../Service/config";
 
 const CategoryForm = ({ onSubmit, onCancel, data }) => {
   const { t } = useTranslation();
@@ -16,7 +18,7 @@ const CategoryForm = ({ onSubmit, onCancel, data }) => {
     CategoryId: 0,
   });
 
-  const [status, setStatus] = useState("IDLE");
+  const [status, setStatus] = useState("UPDATE");
 
   const [category, setCategory] = useState(categoryInitValues);
 
@@ -33,46 +35,56 @@ const CategoryForm = ({ onSubmit, onCancel, data }) => {
     setCategory((prev) => ({ ...prev, [id]: value }));
   }, []);
 
-  const isNotValid = useMemo(() => {
-    let keysToCheck = ["Title"];
-    for (let key of keysToCheck) {
-      if (!category[key] || !category[key].toString()) {
-        return true;
-      }
-    }
+  // const isNotValid = useMemo(() => {
+  //   let keysToCheck = ["Title"];
+  //   for (let key of keysToCheck) {
+  //     if (!category[key] || !category[key].toString()) {
+  //       return true;
+  //     }
+  //   }
 
-    if (category.Id) {
-      let result = true;
-      for (let key of Object.keys(category)) {
-        if (category[key] !== categoryInitValues[key]) {
-          result = false;
-        }
-      }
-      return result;
-    }
-  }, [category, categoryInitValues]);
+  //   if (category.Id) {
+  //     let result = true;
+  //     for (let key of Object.keys(category)) {
+  //       if (category[key] !== categoryInitValues[key]) {
+  //         result = false;
+  //       }
+  //     }
+  //     return result;
+  //   }
+  // }, [category, categoryInitValues]);
 
   // submit form
   const addHandle = useCallback(() => {
     onSubmit(category);
   }, [category, onSubmit]);
+  let handleGetImages = (event) => {
+    let files = event.target.files;
+    setCategory({ ...category, image: files[0] });
+  };
 
+  let handleRemoveImage = useCallback(() => {
+    setCategory((prev) => ({
+      ...prev,
+      image: "",
+    }));
+  }, []);
   return (
     <>
       <div className="mt-2">
         <InputTwoLanguages
-          id="Title"
+          id="name"
           label="Title"
           onValueChange={updateCategory}
-          value={category.Title}
-          valueEn={category.TitleEn}
+          value={category.name}
+          valueEn={category.name_en}
         />
         <InputTwoLanguages
-          id="Description"
+          id="describe"
           label="Description"
           onValueChange={updateCategory}
-          value={category.Description}
-          valueEn={category.DescriptionEn}
+          value={category.describe}
+          valueEn={category.describe_en}
         />
         <FormGroup>
           <label>{t("Rank")}</label>
@@ -85,12 +97,31 @@ const CategoryForm = ({ onSubmit, onCancel, data }) => {
             min="0"
           />
         </FormGroup>
+        <FormGroup>
+          <label>{t("Rank")}</label>
+
+          <UploadImageButton
+            isMultiple={false}
+            handleGetImages={handleGetImages}
+            handleRemoveImage={handleRemoveImage}
+            imagesFiles={
+              category.image
+                ? [
+                    typeof category.image == "string"
+                      ? ApiBaseUrl + category.image
+                      : category.image,
+                  ]
+                : []
+            }
+          />
+        </FormGroup>
+
         <div className="button-container">
           <Row>
             <Col style={{ width: "170px" }}>
               <Button
                 className="btn btn btn-success col-12"
-                disabled={isNotValid}
+                // disabled={isNotValid}
                 onClick={addHandle}
               >
                 {status === "update" ? t("Update") : t("Add")}

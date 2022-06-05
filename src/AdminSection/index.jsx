@@ -46,10 +46,12 @@ export default function AdminSection({
 
   const deleteItem = useCallback(
     async (e) => {
+      console.log(e);
       e.cancel = true;
+
       let config = {
         method: "DELETE",
-        url: controller + "/" + e.data.CategoryId,
+        url: controller + "/" + e.key.Id,
       };
 
       REQUEST(config)
@@ -73,6 +75,7 @@ export default function AdminSection({
 
   const saveForm = useCallback(
     (data, images = []) => {
+      console.log("data", data);
       data.ProductId = productId;
 
       if (
@@ -83,6 +86,7 @@ export default function AdminSection({
         data.Image = data.Image.replace(ApiBaseUrl, "");
       }
       let formData = new FormData();
+
       for (let [key, value] of Object.entries(data)) {
         formData.append(key.toString(), value);
       }
@@ -91,11 +95,17 @@ export default function AdminSection({
           formData.append("imagelist", images[i]);
         }
       }
+      formData = new FormData();
 
+      formData.append("image", data.image);
+      formData.append("title", "dsdvalue".toString());
+      formData.append("text", "vasdsdslue".toString());
       let config = {
         method: status === "ADD" ? "POST" : "PUT",
+        // method: status === "ADD" ? "POST" : "POST",
         url: controller,
-        data: formData,
+        // data: formData,
+        data: data,
       };
 
       REQUEST(config)
@@ -179,8 +189,6 @@ export default function AdminSection({
     <>
       <ControlsTable
         disabled={showForm}
-        allowAdd={"Categories"}
-        allowDelete={"Categories"}
         colAttributes={colAttributes}
         dataSource={records}
         onAddButtonClicked={() => setStatus("ADD")}

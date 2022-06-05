@@ -31,7 +31,7 @@ const InputTwoLanguages = ({
           <FormGroup>
             <label>{label} English</label>
             <Input
-              id={id + "En"}
+              id={id + "_en"}
               value={valueEn}
               disabled={enDisabled}
               onChange={(e) => onValueChange(e.target.value, e.target.id)}

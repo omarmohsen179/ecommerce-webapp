@@ -3,12 +3,12 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardBody, CardHeader } from "reactstrap";
 
-// import { REQUEST } from "../../Services/callAPI";
 import CategoryForm from "./CategoryForm";
 import { useHistory } from "react-router-dom";
-// import { apiEndPoint } from "../../Services/config.json";
-import CategoryFormSupperAdmin from "./CategoryFormSupperAdmin";
+
 import AdminSection from "../../../../AdminSection";
+import REQUEST from "../../../../Service/Request";
+import { ApiBaseUrl } from "../../../../Service/config";
 
 const Categories = () => {
   let history = useHistory();
@@ -17,13 +17,13 @@ const Categories = () => {
   const categoriesColAttributes = useMemo(() => {
     return [
       {
-        field: "Rank",
+        field: "rank",
         caption: t("Rank"),
         alignment: "center",
       },
-      { field: "Title", caption: t("Title"), alignment: "center" },
+      { field: "name", caption: t("Title"), alignment: "center" },
       {
-        field: "TitleEn",
+        field: "name_en",
         caption: t("Title En"),
         alignment: "center",
       },
@@ -35,50 +35,20 @@ const Categories = () => {
     ];
   }, [t]);
 
-  // useEffect(() => {
-  //   // get categories
-  //   let config: AxiosRequestConfig = {
-  //     method: "GET",
-  //     url: `Categories`,
-  //   };
+  useEffect(() => {
+    // get categories
+    let config = {
+      method: "GET",
+      url: `${ApiBaseUrl}/api/category`,
+    };
 
-  //   REQUEST(config).then((response) => {
-  //     let _productsCategries = response as unknown as Category[];
-  //     setProductsCategories([..._productsCategries]);
-  //   });
-  // }, []);
+    REQUEST(config).then((response) => {
+      let _productsCategries = response;
+      setProductsCategories([..._productsCategries]);
+    });
+  }, []);
   const [Auth, setAuth] = useState("SupperAdmin");
-  // React.useEffect(() => {
-  //   let INFI = async () => {
-  //     let x = await checkusertype();
-  //     setAuth(x ? x : "");
-  //   };
-  //   INFI();
-  // }, []);
-  // let checkusertype: any = useCallback(async function () {
-  //   let item = JSON.parse(localStorage.getItem("user") || "{}");
-
-  //   !item || !item.type
-  //     ? history.push("/")
-  //     : await axios
-  //         .get(apiEndPoint + "/api/check-type", {
-  //           headers: {
-  //             ...axios.defaults.headers,
-  //             Authorization: `bearer ${
-  //               JSON.parse(localStorage.getItem("user") || "{}").token
-  //             }`,
-  //           },
-  //         })
-  //         .then((res) => {
-  //           return res[0] ? res[0] : "";
-  //         })
-  //         .catch((err) => {
-  //           history.push("/log-in");
-  //           localStorage.removeItem("user");
-  //           return "";
-  //         });
-  //   return item?.type ? item?.type[0] : "";
-  // }, []);
+  React.useEffect(() => {}, []);
   return (
     <>
       <div className="content" style={{ padding: 20 }}>
@@ -91,7 +61,8 @@ const Categories = () => {
               data={productsCategories}
               component={CategoryForm}
               colAttributes={categoriesColAttributes}
-              controller={"Categories"}
+              // controller={ApiBaseUrl + "/api/auth/test_1"}
+              controller={ApiBaseUrl + "/api/category"}
             />
           </CardBody>
         </Card>
