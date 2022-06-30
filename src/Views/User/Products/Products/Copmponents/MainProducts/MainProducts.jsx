@@ -26,14 +26,14 @@ import ProductForm from "./ProductForm";
 // import { REQUEST } from "../../../../Services/callAPI";
 // import { apiEndPoint } from "../../../../Services/config.json";
 
-const MainProducts = ({ colAttributes }) => {
+const MainProducts = ({ colAttributes, data }) => {
   const [Auth, setAuth] = useState("");
 
   const { t } = useTranslation();
   // const [itemToUpdate, setItemToUpdate] = useState();
   const [status, setStatus] = useState("IDLE");
 
-  const [products, setProducts] = useState();
+  // const [products, setProducts] = useState();
 
   const history = useHistory();
 
@@ -152,7 +152,7 @@ const MainProducts = ({ colAttributes }) => {
           <ControlsTable
             disabled={showForm}
             colAttributes={colAttributes}
-            dataSource={products}
+            dataSource={data}
             onAddButtonClicked={() => {
               setIsClicked(true);
               setHide(false);

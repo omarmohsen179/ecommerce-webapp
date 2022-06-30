@@ -6,6 +6,7 @@ import REQUEST from "../../../Service/Request";
 import WebForm from "./WebForm";
 
 import CrudTable from "../../../Components/CrudTable/CrudTable";
+import { ApiBaseUrl } from "../../../Service/config";
 
 function Web() {
   const { t } = useTranslation();
@@ -43,7 +44,7 @@ function Web() {
     // get slider images
     let config = {
       method: "GET",
-      url: `${"ApiBaseUrl"}/api/category`,
+      url: `${ApiBaseUrl}/api/category`,
     };
 
     REQUEST(config).then((response) => {

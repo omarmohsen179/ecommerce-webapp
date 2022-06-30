@@ -46,13 +46,15 @@ function Products() {
     ];
   }, [t]);
 
+  const data = [{}];
+
   return (
     <>
       <div
         className="content"
         style={{ direction: i18n.language === "en" ? "ltr" : "rtl" }}
       >
-        <MainProducts colAttributes={productsItemColAttributes} />
+        <MainProducts data={data} colAttributes={productsItemColAttributes} />
       </div>
     </>
   );

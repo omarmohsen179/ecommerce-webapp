@@ -29,9 +29,11 @@ function Unknown({ match }) {
       var navbarin = document.getElementById("nav-up-container-id");
       var mybutton = document.getElementById("return-top-button");
       var content = document.getElementsByClassName("dropdown-content");
+      var mainBody = document.getElementById("main_body");
       var sticky = navbar?.offsetTop;
       if (window.pageYOffset > sticky + 50) {
         navbar.classList.add("sticky");
+        mainBody.classList.add("margin");
         for (var i = 0; i < content.length; i++) {
           content[i].classList.add("down-nav");
         }
@@ -39,6 +41,8 @@ function Unknown({ match }) {
         navbarin.classList.remove("nav-up-container");
       } else {
         navbar.classList.remove("sticky");
+        mainBody.classList.remove("margin");
+
         mybutton.style.display = "none";
         for (var i = 0; i < content.length; i++) {
           content[i].classList.remove("down-nav");
@@ -49,15 +53,15 @@ function Unknown({ match }) {
   };
   return (
     <div>
-      <ScrollTop />
+      {/* <ScrollTop /> */}
 
-      <div className="header">
+      {/* <div className="header">
         <LangueNavBar />
-      </div>
+      </div> */}
       <div id="navbar">
         <NavigationBar />
       </div>
-      <div className="main_body">
+      <div id="main_body" className="main_body">
         <Switch>
           <Route exact path={`${match.url}`} component={Home} />
           <Route exact path={`${match.url}log-in`} component={Login} />

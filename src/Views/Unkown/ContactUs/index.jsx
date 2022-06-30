@@ -12,7 +12,6 @@ function ContactUs() {
         // backgroundColor: "aqua",
         boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         margin: "50px 20px",
-        marginTop: "150px",
       }}
       className="main-cont"
     >
