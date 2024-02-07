@@ -8,6 +8,7 @@ const ButtonComponent = ({
   type = "button",
   onClick,
   loading = false,
+  icon,
   disable,
 }) => {
   const { t, i18n } = useTranslation();
@@ -19,7 +20,13 @@ const ButtonComponent = ({
       className="site-button-component"
       disabled={disable || loading}
     >
-      {!loading ? t(title) : <TailSpin color="white" height={20} width={20} />}
+      {!loading ? (
+        <>
+          <i className={icon}></i> {" " + t(title)}
+        </>
+      ) : (
+        <TailSpin color="white" height={20} width={20} />
+      )}
     </button>
   );
 };

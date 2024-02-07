@@ -27,10 +27,8 @@ function Footer() {
       style={{ backgroundImage: "url(" + back + ")" }}
       className="footer-container worksBlock"
     >
-      <div style={{ textAlign: "center", color: "white" }}>
-        <h1 style={{ textAlign: "center", color: "white" }}>
-          BE THE FIRST TO KNOW
-        </h1>
+      <div style={{ textAlign: "center" }}>
+        <h1 style={{ textAlign: "center" }}>BE THE FIRST TO KNOW</h1>
         <p>Subscribe to our newsletter and get 10% off your first purchase</p>
       </div>
       <div className="email-sub-form-container">

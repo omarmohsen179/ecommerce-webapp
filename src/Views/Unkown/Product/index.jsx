@@ -19,7 +19,10 @@ function Product() {
   );
   const [active_image, set_active_image] = useState(0);
   const images = [
-    { images: "https://s.fotorama.io/1.jpg" },
+    {
+      images:
+        "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
+    },
     {
       images:
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg",
@@ -32,7 +35,7 @@ function Product() {
       images:
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg",
     },
-    { images: "https://s.fotorama.io/1.jpg" },
+
     {
       images:
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
@@ -41,7 +44,7 @@ function Product() {
       images:
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg",
     },
-    { images: "https://s.fotorama.io/1.jpg" },
+
     {
       images:
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
@@ -50,7 +53,7 @@ function Product() {
       images:
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg",
     },
-    { images: "https://s.fotorama.io/1.jpg" },
+
     {
       images:
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg",
@@ -59,7 +62,6 @@ function Product() {
       images:
         "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg",
     },
-    { images: "https://s.fotorama.io/1.jpg" },
   ];
   return (
     <div
@@ -194,7 +196,10 @@ function Product() {
                 name={"Quantity"}
               />
               <div className="round-black-btn">
-                <ButtonComponent title={"Add to Cart"} />
+                <ButtonComponent
+                  title={"Add to Cart"}
+                  icon={"fas fa-cart-plus"}
+                />
               </div>
             </div>
           </div>
@@ -310,7 +315,10 @@ function Product() {
               </div>
 
               <div className="round-black-btn">
-                <ButtonComponent title={"Submit Review"} />
+                <ButtonComponent
+                  title={"Submit Review"}
+                  icon={"fas fa-cart-plus"}
+                />
               </div>
             </form>
           </div>

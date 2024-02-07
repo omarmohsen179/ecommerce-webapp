@@ -46,8 +46,19 @@ function Footer2() {
       }}
       className="footer-container worksBlock"
     >
-      <div style={{ textAlign: "center", color: "white" }}>
-        <h1 style={{ textAlign: "center", color: "white", marginTop: "4%" }}>
+      <div
+        style={{
+          textAlign: "center",
+          // , color: "white"
+        }}
+      >
+        <h1
+          style={{
+            textAlign: "center",
+            //  color: "white",
+            marginTop: "4%",
+          }}
+        >
           BE THE FIRST TO KNOW
         </h1>
         <p>Subscribe to our newsletter and get 10% off your first purchase</p>
