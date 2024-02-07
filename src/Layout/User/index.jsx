@@ -23,8 +23,9 @@ export default function User({ match }) {
       routes[1],
       ...routes.filter((ele) => selectoruser?.roles?.includes(ele.key)),
     ];
-    setRoutes(routes_data);
-    dispatch(SetSidebarData(routes_data));
+    console.log(routes);
+    setRoutes(routes);
+    dispatch(SetSidebarData(routes));
   }, [selectoruser]);
   return Routes.length > 0 ? (
     <div>

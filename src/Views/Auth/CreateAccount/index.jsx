@@ -23,8 +23,9 @@ function CreateAccount() {
   const [loading, setloading] = useState(false);
   const [error, seterror] = useState({});
   const [Text, settext] = useState("");
-  const [values, setvalues] = useState(defualtvalues.current);
+
   let history = useHistory();
+  const [values, setvalues] = useState(defualtvalues.current);
   const handleChange = useCallback((e) => {
     setvalues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }, []);

@@ -10,6 +10,7 @@ function SquaredInput({
   required,
   errorMessage = "",
   onBlur,
+  placeholder,
 }) {
   const { t, i18n } = useTranslation();
 
@@ -23,6 +24,7 @@ function SquaredInput({
           onBlur={onBlur}
           name={name}
           value={value}
+          placeholder={placeholder}
         />
 
         {errorMessage ? (

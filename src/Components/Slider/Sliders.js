@@ -2,7 +2,7 @@ import React from "react";
 import { ListGroupItem, Slider } from "shards-react";
 
 const Sliders = () => (
-  <ListGroupItem className="px-3">
+  <ListGroupItem GroupItem className="px-3">
     <div className="mb-2 pb-1">
       <strong className="text-muted d-block">Custom Sliders</strong>
       <Slider
